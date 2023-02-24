@@ -11,6 +11,14 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'thermostat',
+    loadChildren: () => import('./thermostat/thermostat.module').then( m => m.ThermostatPageModule)
+  },
+  {
+    path: 'pincode',
+    loadChildren: () => import('./qrcode/pincode/pincode.module').then( m => m.PincodePageModule)
+  },
 ];
 
 @NgModule({

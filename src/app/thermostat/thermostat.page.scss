@@ -1,0 +1,231 @@
+/* HEADER */
+
+.logo {
+  padding-top: 30px;
+}
+
+/* THERMOMETER */
+
+ion-content {
+  --overflow: hidden;
+} 
+
+body{
+  margin:0;
+  -webkit-tap-highlight-color: #999;
+}
+.box{
+  left:0;
+  top:0;
+  bottom:0;
+  right:0;
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:red($color: #000000);
+    .cont{
+      position:relative;
+      width:65vw;
+      height:65vw;
+      background: #cdcdcd;
+      margin:auto;
+      border-radius:50vw;
+      box-shadow:0 0 12vw rgba(233,226,222,1), 0 0 12vw  rgba(210,206,204,1) inset;
+      padding:6vw;
+      box-sizing:border-box;
+      .regu{
+        width:53vw;
+        height:53vw;
+        border-radius:45vw;
+        position:relative;
+        box-shadow:0 5vw 7vw rgba(175,167,155,1);
+        z-index:4;
+        .path{
+          background:linear-gradient(180deg, #fefaf7 0%, #aaa6a8 100%);
+          position:absolute;
+          z-index:55;
+          top:0;
+          left:0;
+          cursor:pointer;
+          width:100%;
+          height:100%;
+          border-radius:50%;
+          &::after{
+            width:97%;
+            height:97%;
+            top:0;
+            border-radius:50%;
+            left:0;
+            position:absolute;
+            z-index:53;
+            content:"";
+            margin:1.5%;
+            background:#d7d7d7;
+          }
+          .temp{
+            display: inline-grid;
+            left:40%;
+            font-size:11vw;
+            letter-spacing:0.2vw;
+            top:15.5vw;
+            color:black;
+            z-index:66;
+            font-family:futura;
+            font-weight:100;
+            position:absolute;
+          }
+        }
+        
+        .off {
+          font-size: 20vw;
+        }
+
+        .led{
+          position:absolute;
+          width:101%;
+          height:101%;
+          content:"";
+          background:#75B838;
+          border-radius:50%;
+          z-index:1;
+          top:0%;
+          left:-0.5%;
+          box-shadow:0 1vw 5vw #75B838;
+          transition:all 0.1s linear;
+        }
+
+        .on {
+          background:#75B838;
+          box-shadow:0 1vw 5vw #75B838;
+        }
+        .off {
+          background:#c93b22;
+          box-shadow:0 1vw 5vw #c93b22;
+        }
+        .path.play + .led{
+          animation: blink 2s ease-in-out;
+        }
+        .path.play .temp{
+          animation: fade 2s ease-in-out;
+        }
+      }
+    }
+}
+
+.bg {
+  height: 100%;
+  width: 100%;
+}
+.bg-img {
+  height: 100%;
+  width: 100%;
+}
+
+@keyframes blink{
+  0% {top:0%;
+          left:-0.5%;box-shadow:0 1vw 5vw #75B838;}
+  25% {top:-0.5%;
+          left:-1%;box-shadow:-1vw 0vw 5vw #75B838;}
+  50% {top:-1%;
+          left:-0.5%;box-shadow:0 -1vw 5vw #75B838;}
+  75% {top:-0.5%;
+          left:0.5%;box-shadow:1vw 0vw 5vw #75B838;}
+  100% {top:0%;
+          left:-0.5%;box-shadow:0 1vw 5vw #75B838;}
+}
+
+@keyframes fade{
+  from {
+    color:#d4d4d4;
+  }
+  to{
+    color : #3e3930;
+  }
+}
+.artitst{
+  position:absolute;
+  top:2vw;
+  right:2vw;
+  background:grey;
+  padding:1vw;
+  line-height:0.7rem;
+  border-radius:1vw;
+  font-family:verdana;
+  color:white;
+  a{
+    color:white;
+    font-size:0.7rem;
+  }
+}
+
+.powerOn {
+  color: #75B838;
+}
+
+.powerOff {
+  color: #c93b22;
+}
+
+.back-btn {
+  width: 20%;
+  display: inline-block;
+}
+
+.temp-down {
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  height: 25%;
+}
+
+.temp-high {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  height: 25%;
+}
+
+.la-chevron-circle-up {
+  color: #FA5858;
+  top: 5px;
+}
+
+.la-chevron-circle-down {
+  color: #5882FA;
+  bottom: 5px;
+}
+
+.disable {
+  display: none;
+}
+
+.lastTemp {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.temp-logo {
+  padding-right: 15px;
+}
+
+.temp-logo {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.temp-font {
+  color: #75B838;
+  font-weight: bold;
+  font-size: 40px;
+}
+
+.middle {
+  height: 50%;
+  display: flex;
+}
+
+.la-3x {
+  
+}

@@ -1,0 +1,46 @@
+ion-content {
+  --overflow: hidden;
+} 
+
+.background {
+  background-image: url('../../../assets/images/bg2.png');
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.centered {
+  height: 100%;
+  width: 100%;
+}
+
+.code-card {
+  width: 90%;
+  max-width: 400px;
+  transform: scale(0);
+  transition: transform 0.3s ease-out;
+}
+
+.show {
+  transform: scale(1);
+}
+
+.hide {
+  display: none;
+}
+
+.pw-title {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pw-logo {
+  padding-right: 15px;
+}
+
+.pw-logo {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}

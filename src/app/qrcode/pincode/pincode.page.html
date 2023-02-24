@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      <div class="pw-title">
+        <div class="pw-logo-logo">
+          <i class="fa fa-key" aria-hidden="true"></i>
+        </div>      
+        <div class="pw-font">Password</div>
+      </div>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="background">
+  <div class="centered">
+    <ion-card class="code-card" [ngClass]="{ 'show': showCode }">
+      <ion-card-header>
+        Enter code pin
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-label position="floating">Pin</ion-label>
+          <ion-input type="number" [(ngModel)]="code"></ion-input>
+        </ion-item>
+      </ion-card-content>
+        <ion-button expand="block" color="success" (click)="onConfirm()">Confirm</ion-button>
+        <ion-button expand="block" color="danger" (click)="navigation('home')">Cancel</ion-button>
+    </ion-card>
+
+    <ion-button expand="block" color="primary" (click)="showCode = !showCode" [ngClass]="{ 'hide': showCode }">
+      Enter code
+    </ion-button>
+  </div>
+</ion-content>
+
+

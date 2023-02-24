@@ -1,27 +1,28 @@
-#container {
-  text-align: center;
+/* HEADER */
 
+.logo {
+  padding-top: 30px;
+}
+
+/* BODY */
+
+ion-content {
+  --overflow: hidden;
+}
+
+ion-button.btn-home {
+  bottom: 5px;
   position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  width: 100%;
+  padding: 0 10px 0 10px;
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+.bg {
+  height: 100%;
+  width: 100%;
 }
-
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
-}
-
-#container a {
-  text-decoration: none;
+.bg-img {
+  height: 100%;
+  width: 100%;
+  opacity: 0.6; 
 }

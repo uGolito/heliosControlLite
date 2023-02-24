@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      <div class="lastTemp">
+        <div class="temp-logo">
+          <img src="../../assets/images/mobile_ambient.png" alt="temp-logo">
+        </div>      
+        <div class="temp-font">{{ lastTemp }}°</div>
+      </div>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="bg">
+    <img class="bg-img" src="../../assets/images/bg-thermo.png" alt="">
+    <div class="box">
+      <div class="temp-high">
+        <i class="fa fa-angle-up" (click)="upTemp()" [ngClass] ="power ? 'enable' : 'disable'"></i>
+      </div>
+      <div class="middle">
+        <div class="cont" (click)="shutDown()" [ngClass] ="power ? 'powerOff' : 'powerOn'">
+          <div class="regu">
+            <a class="path">
+              <div class="temp">
+                <i class="fa-solid fa-power-off" id="btn-power"></i>
+                <ng-container *ngIf="power">
+                  {{ desiratedTemp }}°
+                </ng-container>
+              </div>
+            </a>
+            <div class="led " [ngClass] ="power ? 'on' : 'off'"></div>
+          </div>
+        </div>
+      </div>
+      <div class="temp-down">
+        <i class="fa fa-angle-down" (click)="downTemp()" [ngClass] ="power ? 'enable' : 'disable'"></i>
+      </div>
+    </div>
+  </div>
+</ion-content>
