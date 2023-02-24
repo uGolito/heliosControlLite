@@ -1,29 +1,3 @@
-ion-content {
-  --overflow: hidden;
-  --background: url('../../../assets/images/bg-pincode.png');
-} 
-
-
-.centered {
-  height: 100%;
-  width: 100%;
-}
-
-.code-card {
-  width: 90%;
-  max-width: 400px;
-  transform: scale(0);
-  transition: transform 0.3s ease-out;
-}
-
-.show {
-  transform: scale(1);
-}
-
-.hide {
-  display: none;
-}
-
 .pw-title {
   position: relative;
   display: flex;
@@ -40,6 +14,45 @@ ion-content {
   padding-bottom: 10px;
 }
 
-.show {
-  margin-top: 160px
+ion-content {
+  --overflow: hidden;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.logo {
+  margin-bottom: 20px;
+}
+
+.input-container {
+  width: 80%;
+  margin-bottom: 20px;
+}
+
+ion-input {
+  --background: #555;
+  border-radius: 10px;
+  --border-color: #ccc;
+  color: #fff;
+}
+
+.buttons-container {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+ion-button {
+  margin-top: 20px;
+}
+
+.btn-test {
+  background-color: #036600;
 }
