@@ -15,7 +15,7 @@ export class HomePage {
 
   async startScanner () {
       await this.checkPermission();
-      const result = await BarcodeScanner['startScan']();
+      const result = await BarcodeScanner['startScan'];
   }
 
   async checkPermission() {
@@ -34,7 +34,7 @@ export class HomePage {
         {
           text: 'Open Settings',
           handler: () => {
-            BarcodeScanner['openAppSettings']();
+            BarcodeScanner['openAppSettings'];
             resolve(false);
           }
         }]
