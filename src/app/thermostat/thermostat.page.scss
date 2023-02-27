@@ -185,13 +185,13 @@ body{
   height: 25%;
 }
 
-.fa-angle-up {
-  color: #FA5858;
+.btn-high {
+  background-color: #FA5858;
   top: 5px;
 }
 
-.fa-angle-down {
-  color: #5882FA;
+.btn-down {
+  background-color: #5882FA;
   bottom: 5px;
 }
 
@@ -218,7 +218,7 @@ body{
 .temp-font {
   color: #75B838;
   font-weight: bold;
-  font-size: 40px;
+  font-size: 20px;
 }
 
 .middle {
@@ -229,4 +229,49 @@ body{
 .fa-3x {
   margin-left: -42px;
   margin-top: -20px;
+}
+
+.btn {
+  display: inline-block;
+  position: relative;
+  padding: 16px 48px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  overflow: hidden;
+  cursor: pointer;
+  margin: auto;
+}
+
+.btn__icon {
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 24px;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  opacity: 1;
+  transition: opacity 0.2s ease-out;
+}
+
+.btn:hover .btn__icon {
+  opacity: 0.5;
+}
+
+.btn:active .btn__icon {
+  opacity: 0.5;
+  transform: scale(0.8);
+}
+
+.btn__text {
+  margin-left: 24px;
+}
+
+.ion-icon {
+  margin-right: 4px;
+}
+.disable {
+  display: none;
 }

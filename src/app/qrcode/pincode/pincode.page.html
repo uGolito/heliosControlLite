@@ -14,26 +14,17 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <div class="centered">
-    <ion-card class="code-card" [ngClass]="{ 'show': showCode }">
-      <ion-card-header>
-        Enter code pin
-      </ion-card-header>
-      <ion-card-content>
-        <ion-item>
-          <ion-label position="floating">Pin</ion-label>
-          <ion-input type="number" [(ngModel)]="code"></ion-input>
-        </ion-item>
-      </ion-card-content>
-        <ion-button expand="block" color="success" (click)="onConfirm()">Confirm</ion-button>
-        <ion-button expand="block" color="danger" (click)="navigation('home')">Cancel</ion-button>
-    </ion-card>
-
-    <ion-button expand="block" color="success" (click)="showCode = !showCode" [ngClass]="{ 'hide': showCode }">
-      Enter code
-    </ion-button>
+<ion-content class="ion-padding" style="--background: #333; color: #fff;">
+  <div class="container">
+    <div class="logo">
+      <img src="../../../assets/images/logo_helios.png" alt="Logo">
+    </div>
+    <div class="input-container">
+      <ion-input type="text" placeholder="Enter code pin"></ion-input>
+    </div>
+    <div class="buttons-container">
+      <ion-button color="success" expand="block" shape="round" (click)="onConfirm()">Confirm</ion-button>
+      <ion-button color="danger" expand="block" shape="round" (click)="navigation('home')">Cancel</ion-button>
+    </div>
   </div>
 </ion-content>
-
-
