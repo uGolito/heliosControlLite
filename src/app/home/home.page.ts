@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { AlertController } from '@ionic/angular';
-import { Router } from '@angular/router';
 import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
 
 
@@ -11,12 +9,9 @@ import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
 })
 export class HomePage {
 
-  constructor(private alerController: AlertController) {}
+  scanActive: boolean = false;
 
-  async startScanner () {
-      await this.checkPermission();
-      const result = await BarcodeScanner.startScan();
-  }
+  constructor() {}
 
   async checkPermission() {
     return new Promise(async (resolve, reject) => {
@@ -24,25 +19,40 @@ export class HomePage {
       if (status.granted) {
         resolve(true);
       } else if (status.denied) {
-        const alert = await this.alerController.create({
-          header: 'No permission',
-          message: 'Please allow camera access in your settings',
-          buttons: [{
-            text: 'No',
-            role: 'cancel'
-          },
-        {
-          text: 'Open Settings',
-          handler: () => {
-            BarcodeScanner.openAppSettings();
-            resolve(false);
-          }
-        }]
-      });
-      await alert.present();
-      } else {
+        BarcodeScanner.openAppSettings();
         resolve(false);
       }
-    });   
+    });
+  }
+
+  async startScanner() {
+    const allowed = await this.checkPermission();
+
+    if (allowed) {
+      this.scanActive = true;
+      BarcodeScanner.hideBackground();
+
+      const result = await BarcodeScanner.startScan();
+
+      if (result.hasContent) {
+        this.scanActive = false;
+        alert(result.content); //The QR content will come out here
+        //Handle the data as your heart desires here
+      } else {
+        alert('NO DATA FOUND!');
+      }
+    } else {
+      alert('NOT ALLOWED!');
+    }
+  }
+
+  stopScanner() {
+    BarcodeScanner.stopScan();
+    this.scanActive = false;
+  }
+
+  ionViewWillLeave() {
+    BarcodeScanner.stopScan();
+    this.scanActive = false;
   }
 }
