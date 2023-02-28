@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
-import { Plugins } from '@capacitor/core';
-const { BarcodeScanner } = Plugins;
+import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
+
 
 @Component({
   selector: 'app-home',
@@ -15,12 +15,12 @@ export class HomePage {
 
   async startScanner () {
       await this.checkPermission();
-      const result = await BarcodeScanner['startScan'];
+      const result = await BarcodeScanner.startScan();
   }
 
   async checkPermission() {
     return new Promise(async (resolve, reject) => {
-      const status = await BarcodeScanner['checkPermission']({ force: true });
+      const status = await BarcodeScanner.checkPermission({ force: true });
       if (status.granted) {
         resolve(true);
       } else if (status.denied) {
@@ -34,7 +34,7 @@ export class HomePage {
         {
           text: 'Open Settings',
           handler: () => {
-            BarcodeScanner['openAppSettings'];
+            BarcodeScanner.openAppSettings();
             resolve(false);
           }
         }]
