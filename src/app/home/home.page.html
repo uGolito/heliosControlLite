@@ -6,6 +6,7 @@
   </ion-toolbar>
 </ion-header>
 
+<!--
 <ion-content>
   <div class="bg">
     <img
@@ -13,6 +14,22 @@
       src="../../assets/images/bg-home.png"
       alt=""
     >
-    <ion-button expand="block" size="large" color="success" class="btn-home" (click)="startScan()">Scan QR code</ion-button> 
+    <ion-button expand="block" size="large" color="success" class="btn-home" (click)="startScanner()">Scan QR code</ion-button> 
   </div>
+</ion-content>
+-->
+
+<ion-content
+  [fullscreen]="true"
+  [style.--background]="scanActive?'#00000000':'#ffffff'"
+>
+  <ion-button expand="full" (click)="startScanner()" [hidden]="scanActive">
+    SCAN
+  </ion-button>
+  <ion-row class="scan-button" [hidden]="!scanActive">
+    <ion-col class="ion-no-padding">
+      <ion-button expand="full" (click)="stopScanner()">Stop</ion-button>
+    </ion-col>
+  </ion-row>
+  <div class="scan-box" [hidden]="!scanActive"></div>
 </ion-content>
