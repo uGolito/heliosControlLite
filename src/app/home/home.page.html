@@ -19,17 +19,15 @@
 </ion-content>
 -->
 
-<ion-content [fullscreen]="true" [style.--background]="scanActive?'#00000000':'#ffffff'">
-  <div class="bg">
-    <img
-      class="bg-img"
-      src="../../assets/images/bg-home.png"
-      alt=""
-    >
-  <ion-button expand="block" size="large" color="success" class="btn-home" (click)="startScanner()" [hidden]="scanActive">
-    Scan QR code
+<ion-content
+  [fullscreen]="true"
+  [style.--background]="scanActive?'#00000000':'#ffffff'"
+>
+  <ion-button expand="full" (click)="startScanner()" [hidden]="scanActive">
+    SCAN
   </ion-button>
-  </div>
+  <h2>QR Code Content:</h2>
+  <p>{{ qrContent }}</p>
   <ion-row class="scan-button" [hidden]="!scanActive">
     <ion-col class="ion-no-padding">
       <ion-button expand="full" (click)="stopScanner()">Stop</ion-button>
