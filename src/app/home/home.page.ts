@@ -10,6 +10,8 @@ import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
 export class HomePage {
 
   scanActive: boolean = false;
+  qrContent: any;
+  qrContentElement: any;
 
   constructor() {}
 
@@ -36,8 +38,14 @@ export class HomePage {
 
       if (result.hasContent) {
         this.scanActive = false;
-        alert(result.content); //The QR content will come out here
-        //Handle the data as your heart desires here
+        this.qrContent = result.content;
+        alert(result.content); //Afficher le contenu du QR dans une boite de dialogue
+        
+        // Afficher sur la page home le contenu du QR
+        this.qrContentElement = document.getElementById('qr-content');
+        if (this.qrContentElement) {
+          this.qrContentElement.textContent = this.qrContent;
+        }
       } else {
         alert('NO DATA FOUND!');
       }
