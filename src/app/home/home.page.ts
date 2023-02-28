@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
 
 
@@ -13,7 +14,7 @@ export class HomePage {
   qrContent: any;
   qrContentElement: any;
 
-  constructor() {}
+  constructor(private route: Router) {}
 
   async checkPermission() {
     return new Promise(async (resolve, reject) => {
@@ -39,7 +40,8 @@ export class HomePage {
       if (result.hasContent) {
         this.scanActive = false;
         this.qrContent = result.content;
-        alert(result.content); //Afficher le contenu du QR dans une boite de dialogue        
+        alert(result.content); //Afficher le contenu du QR dans une boite de dialogue 
+        this.route.navigate(['/pincode']);       
       } else {
         alert('NO DATA FOUND!');
       }

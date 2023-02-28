@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
+import { DataService } from '../../services/data/data.service';
 
 @Component({
   selector: 'app-pincode',
@@ -11,7 +12,7 @@ export class PincodePage implements OnInit {
   showCode = false;
   code = '';
 
-  constructor(private navCtrl: NavController, private route: Router) { }
+  constructor(private route: Router, private dataService: DataService) { }
 
   ngOnInit() {
   }
