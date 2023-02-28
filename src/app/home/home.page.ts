@@ -39,13 +39,7 @@ export class HomePage {
       if (result.hasContent) {
         this.scanActive = false;
         this.qrContent = result.content;
-        alert(result.content); //Afficher le contenu du QR dans une boite de dialogue
-        
-        // Afficher sur la page home le contenu du QR
-        this.qrContentElement = document.getElementById('qr-content');
-        if (this.qrContentElement) {
-          this.qrContentElement.textContent = this.qrContent;
-        }
+        alert(result.content); //Afficher le contenu du QR dans une boite de dialogue        
       } else {
         alert('NO DATA FOUND!');
       }
