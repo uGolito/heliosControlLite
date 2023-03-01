@@ -22,8 +22,6 @@ export class PincodePage implements OnInit {
   }
 
   onConfirm() {
-    // Ajoutez ici la logique pour vérifier le code et prendre une action
-    console.log('Code entré :', this.code);
     this.dataService.apiRequest('/zone/details', this.code);
     this.showCode = false;
     this.route.navigate(['/thermostat']);
