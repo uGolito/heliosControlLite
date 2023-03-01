@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
+import { Subscription } from 'rxjs';
 import { DataService } from '../../services/data/data.service';
 
 @Component({
@@ -12,14 +13,18 @@ export class PincodePage implements OnInit {
   showCode = false;
   code = '';
 
+  zoneSubscription!: Subscription;
+
   constructor(private route: Router, private dataService: DataService) { }
 
   ngOnInit() {
+    //this.zoneSubscription.s
   }
 
   onConfirm() {
     // Ajoutez ici la logique pour vérifier le code et prendre une action
     console.log('Code entré :', this.code);
+    this.dataService.apiRequest('/zone/details', this.code);
     this.showCode = false;
     this.route.navigate(['/thermostat']);
   }

@@ -5,9 +5,9 @@ import { Socket } from 'ngx-socket-io';
   providedIn: 'root'
 })
 export class SocketService {
-
+  
   constructor(private socket: Socket) { }
-
+  
   sendCommand(socketId: any, command: any) {
     console.log(command);
     this.socket.emit("command", {"socketId": socketId, "value": command });

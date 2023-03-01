@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -14,7 +15,7 @@ export class HomePage {
   qrContent: any;
   qrContentElement: any;
 
-  constructor(private route: Router) {}
+  constructor(private route: Router, private snackBar: MatSnackBar) {}
 
   async checkPermission() {
     return new Promise(async (resolve, reject) => {
@@ -40,13 +41,30 @@ export class HomePage {
       if (result.hasContent) {
         this.scanActive = false;
         this.qrContent = result.content;
-        alert(result.content); //Afficher le contenu du QR dans une boite de dialogue 
-        this.route.navigate(['/pincode']);       
+        const qrContentArray = result.content?.split('#');
+        if (qrContentArray && qrContentArray[0] === 'helios') {
+          this.route.navigateByUrl('/pincode');
+        } else {
+          this.snackBar.open('Le code QR n\'est pas un code Helios', 'OK', {
+            duration: 3000,
+            horizontalPosition: 'center',
+            verticalPosition: 'bottom',
+          });
+          this.route.navigateByUrl('/home');
+        }
       } else {
-        alert('NO DATA FOUND!');
+        this.snackBar.open('Aucune donnée trouvée dans le code QR', 'OK', {
+          duration: 3000,
+          horizontalPosition: 'center',
+          verticalPosition: 'bottom',
+        });
       }
     } else {
-      alert('NOT ALLOWED!');
+      this.snackBar.open('L\'accès à la caméra n\'est pas autorisé', 'OK', {
+        duration: 3000,
+        horizontalPosition: 'center',
+        verticalPosition: 'bottom',
+      });
     }
   }
 
