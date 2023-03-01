@@ -10,13 +10,14 @@ import { DataService } from '../../services/data/data.service';
 })
 export class PincodePage implements OnInit {
   showCode = false;
-  code = '';
+  code :any;
   myResponse : any;
   zoneSubscription!: Subscription;
 
   constructor(private route: Router, private dataService: DataService) { }
 
   ngOnInit() {
+    this.code = this.dataService.zoneId;
   }
 
   // id'61714a7923ccb226672366a6'

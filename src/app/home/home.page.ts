@@ -47,7 +47,9 @@ export class HomePage {
         this.scanActive = false;
         this.qrContent = result.content;
         const qrContentArray = result.content?.split('#');
+        // add condition pr verif id
         if (qrContentArray && qrContentArray[0] === 'helios') {
+          this.dataService.zoneId = qrContentArray[1];
           this.route.navigateByUrl('/pincode');
         } else {
           this.snackBar.open('Ce n\'est pas un QR code HELIOS', 'OK', {duration: 3000});

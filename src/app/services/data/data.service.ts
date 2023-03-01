@@ -12,6 +12,7 @@ const DATA_API = 'https://v2.helioscontrol.com/webapi/api/';
 })
 export class DataService {
 
+  public zoneId : any;
   public zoneDetails = new BehaviorSubject(null);
 
   httpOptions = { 
