@@ -17,12 +17,11 @@ export class PincodePage implements OnInit {
   constructor(private route: Router, private dataService: DataService) { }
 
   ngOnInit() {
-    //this.zoneSubscription.s
   }
 
-  // MODIFIER le code par this.code après
+  // id'61714a7923ccb226672366a6'
   onConfirm() {
-    this.dataService.apiRequest('building/single', { 'zoneId' : '61714a7923ccb226672366a6' }).subscribe(response => {
+    this.dataService.apiRequest('building/single', { 'zoneId' : this.code }).subscribe(response => {
       if (response['message'].status == 200) {
         this.dataService.zoneDetails.next(response['message'].zone);
         this.myResponse = response['message'].zone;
