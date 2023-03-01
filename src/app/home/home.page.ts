@@ -43,15 +43,15 @@ export class HomePage {
         this.qrContent = result.content;
         const qrContentArray = result.content?.split('#');
         if (qrContentArray && qrContentArray[0] === 'helios') {
-          alert(result.content); //Afficher le contenu du QR dans une boite de dialogue 
           this.route.navigateByUrl('/pincode');
         } else {
           this.snackBar.open('Le code QR n\'est pas bon', 'OK', {
             duration: 3000,
             horizontalPosition: 'center',
             verticalPosition: 'bottom',
+            politeness: 'polite',
+            panelClass: ['custom-snackbar']
           });
-          alert('Le code QR n\'est pas un code Helios');
           this.route.navigateByUrl('/home');
         }
       } else {
@@ -59,16 +59,18 @@ export class HomePage {
           duration: 3000,
           horizontalPosition: 'center',
           verticalPosition: 'bottom',
+          politeness: 'polite',
+          panelClass: ['custom-snackbar']
         });
-        alert('No data found');
       }
     } else {
       this.snackBar.open('L\'accès à la caméra n\'est pas autorisé', 'OK', {
         duration: 3000,
         horizontalPosition: 'center',
         verticalPosition: 'bottom',
+        politeness: 'polite',
+        panelClass: ['custom-snackbar']
       });
-      alert('Accès camera refusé');
     }
   }
 
