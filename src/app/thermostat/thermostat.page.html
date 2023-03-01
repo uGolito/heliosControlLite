@@ -8,7 +8,7 @@
           <div class="temp-logo">
             <i class="fa-solid fa-2x fa-location-dot"></i>
           </div>      
-          <div class="temp-font">Local 1</div>
+          <div *ngIf="zone" class="temp-font">{{zone.name}}</div>
         </div>
     </ion-title>
   </ion-toolbar>
@@ -29,8 +29,8 @@
             <a class="path">
               <div class="temp">
                 <i class="fa-solid fa-power-off" id="btn-power"></i>
-                <ng-container *ngIf="power">
-                  {{ desiratedTemp }}°
+                <ng-container *ngIf="power && zone">
+                  {{ zone.heating.desiredTemp }}°
                 </ng-container>
               </div>
             </a>

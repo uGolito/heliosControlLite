@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
 import { MatSnackBar } from '@angular/material/snack-bar';
+// pour test on web
+import { DataService } from '../services/data/data.service';
 
 
 @Component({
@@ -15,7 +17,10 @@ export class HomePage {
   qrContent: any;
   qrContentElement: any;
 
-  constructor(private route: Router, private snackBar: MatSnackBar) {}
+  //pour test api onWeb
+  myResponse : any;
+
+  constructor(private route: Router, private snackBar: MatSnackBar, private dataService: DataService) {}
 
   async checkPermission() {
     return new Promise(async (resolve, reject) => {
@@ -64,5 +69,12 @@ export class HomePage {
   ionViewWillLeave() {
     BarcodeScanner.stopScan();
     this.scanActive = false;
+  }
+
+  callApi() {
+    this.dataService.apiRequest('building/single', { 'zoneId' : '61714a7923ccb226672366a6' }).subscribe(response => {
+    this.myResponse = response;
+    console.log(this.myResponse);
+    })
   }
 }

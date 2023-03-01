@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NavController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 import { DataService } from '../../services/data/data.service';
 
@@ -12,7 +11,7 @@ import { DataService } from '../../services/data/data.service';
 export class PincodePage implements OnInit {
   showCode = false;
   code = '';
-
+  myResponse : any;
   zoneSubscription!: Subscription;
 
   constructor(private route: Router, private dataService: DataService) { }
@@ -22,13 +21,18 @@ export class PincodePage implements OnInit {
   }
 
   onConfirm() {
-    this.dataService.apiRequest('/zone/details', this.code);
+    this.dataService.apiRequest('building/single', { 'zoneId' : this.code }).subscribe(response => {
+      if (response['message'].status == 200) {
+        this.dataService.zoneDetails.next(response['message'].zone);
+        this.myResponse = response['message'].zone;
+      }
+    })
     this.showCode = false;
     this.route.navigate(['/thermostat']);
   }
 
   navigation(url : String) {
     this.route.navigate(['/'+url]);
-}
+  }
 }
 

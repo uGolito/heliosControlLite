@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HomePage } from '../home/home.page';
 import { Router } from '@angular/router';
+import { DataService } from '../services/data/data.service';
 
 @Component({
   selector: 'app-thermostat',
@@ -12,11 +13,17 @@ export class ThermostatPage implements OnInit {
   lastTemp = 0;
   desiratedTemp = 0;
   power:boolean = true;
+  zone : any;
 
   component = HomePage;
-  constructor(private route : Router) { }
+  constructor(private route : Router, private dataService : DataService) { }
 
   ngOnInit() {
+    this.dataService.zoneDetails.subscribe(zoneDetails => {
+      if (zoneDetails) {
+        this.zone = zoneDetails;
+      }
+    })
   }
 
   upTemp() {
