@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
-import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -16,19 +16,6 @@ export class HomePage {
   qrContentElement: any;
 
   constructor(private route: Router, private snackBar: MatSnackBar) {}
-
-  showMessage() {
-    const config: MatSnackBarConfig = {
-      duration: 3000,
-      horizontalPosition: 'center',
-      verticalPosition: 'top',
-      announcementMessage: 'Le code QR n\'est pas bon',
-      politeness: 'polite',
-      panelClass: ['my-custom-snackbar'],
-    };
-
-    this.snackBar.open('Le code QR n\'est pas bon', 'OK', config);
-  }
 
   async checkPermission() {
     return new Promise(async (resolve, reject) => {
@@ -58,26 +45,14 @@ export class HomePage {
         if (qrContentArray && qrContentArray[0] === 'helios') {
           this.route.navigateByUrl('/pincode');
         } else {
-          this.showMessage();
+          this.snackBar.open('Ce n\'est pas un QR code HELIOS', 'OK', {duration: 3000});
           this.route.navigateByUrl('/home');
         }
       } else {
-        this.snackBar.open('Aucune donnée trouvée dans le code QR', 'OK', {
-          duration: 3000,
-          horizontalPosition: 'center',
-          verticalPosition: 'bottom',
-          politeness: 'polite',
-          panelClass: ['custom-snackbar']
-        });
+        this.snackBar.open('Aucune donnée trouvée dans le code QR', 'OK', {duration: 3000});
       }
     } else {
-      this.snackBar.open('L\'accès à la caméra n\'est pas autorisé', 'OK', {
-        duration: 3000,
-        horizontalPosition: 'center',
-        verticalPosition: 'bottom',
-        politeness: 'polite',
-        panelClass: ['custom-snackbar']
-      });
+      this.snackBar.open('L\'accès à la caméra n\'est pas autorisé', 'OK', {duration: 3000});
     }
   }
 
