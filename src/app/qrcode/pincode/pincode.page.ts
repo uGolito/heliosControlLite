@@ -20,8 +20,9 @@ export class PincodePage implements OnInit {
     //this.zoneSubscription.s
   }
 
+  // MODIFIER le code par this.code après
   onConfirm() {
-    this.dataService.apiRequest('building/single', { 'zoneId' : this.code }).subscribe(response => {
+    this.dataService.apiRequest('building/single', { 'zoneId' : '61714a7923ccb226672366a6' }).subscribe(response => {
       if (response['message'].status == 200) {
         this.dataService.zoneDetails.next(response['message'].zone);
         this.myResponse = response['message'].zone;
