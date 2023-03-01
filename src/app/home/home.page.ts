@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -14,7 +15,7 @@ export class HomePage {
   qrContent: any;
   qrContentElement: any;
 
-  constructor(private route: Router) {}
+  constructor(private route: Router, private snackBar: MatSnackBar) {}
 
   async checkPermission() {
     return new Promise(async (resolve, reject) => {
@@ -45,28 +46,28 @@ export class HomePage {
           alert(result.content); //Afficher le contenu du QR dans une boite de dialogue 
           this.route.navigateByUrl('/pincode');
         } else {
-          // this.snackBar.open('Le code QR n\'est pas bon', 'OK', {
-          //   duration: 3000,
-          //   horizontalPosition: 'center',
-          //   verticalPosition: 'bottom',
-          // });
+          this.snackBar.open('Le code QR n\'est pas bon', 'OK', {
+            duration: 3000,
+            horizontalPosition: 'center',
+            verticalPosition: 'bottom',
+          });
           alert('Le code QR n\'est pas un code Helios');
           this.route.navigateByUrl('/home');
         }
       } else {
-        // this.snackBar.open('Aucune donnée trouvée dans le code QR', 'OK', {
-        //   duration: 3000,
-        //   horizontalPosition: 'center',
-        //   verticalPosition: 'bottom',
-        // });
+        this.snackBar.open('Aucune donnée trouvée dans le code QR', 'OK', {
+          duration: 3000,
+          horizontalPosition: 'center',
+          verticalPosition: 'bottom',
+        });
         alert('No data found');
       }
     } else {
-      // this.snackBar.open('L\'accès à la caméra n\'est pas autorisé', 'OK', {
-      //   duration: 3000,
-      //   horizontalPosition: 'center',
-      //   verticalPosition: 'bottom',
-      // });
+      this.snackBar.open('L\'accès à la caméra n\'est pas autorisé', 'OK', {
+        duration: 3000,
+        horizontalPosition: 'center',
+        verticalPosition: 'bottom',
+      });
       alert('Accès camera refusé');
     }
   }
