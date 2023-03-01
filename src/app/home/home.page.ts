@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -16,6 +16,19 @@ export class HomePage {
   qrContentElement: any;
 
   constructor(private route: Router, private snackBar: MatSnackBar) {}
+
+  showMessage() {
+    const config: MatSnackBarConfig = {
+      duration: 3000,
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+      announcementMessage: 'Le code QR n\'est pas bon',
+      politeness: 'polite',
+      panelClass: ['my-custom-snackbar'],
+    };
+
+    this.snackBar.open('Le code QR n\'est pas bon', 'OK', config);
+  }
 
   async checkPermission() {
     return new Promise(async (resolve, reject) => {
@@ -45,13 +58,7 @@ export class HomePage {
         if (qrContentArray && qrContentArray[0] === 'helios') {
           this.route.navigateByUrl('/pincode');
         } else {
-          this.snackBar.open('Le code QR n\'est pas bon', 'OK', {
-            duration: 3000,
-            horizontalPosition: 'center',
-            verticalPosition: 'bottom',
-            politeness: 'polite',
-            panelClass: ['custom-snackbar']
-          });
+          this.showMessage();
           this.route.navigateByUrl('/home');
         }
       } else {
