@@ -27,26 +27,19 @@ export class SocketService {
   }
 
   sendCommand(serial: any, command: any) {
-
     this.socket.emit("command", {"serial": serial, "value": command });
-
   }
 
   setPower(id: any, status: any) {
-
     this.socket.emit("power", {"socketId": this.socket.ioSocket.id, "zoneId": id, "status": status});
-
   }
 
   zoneSubscribe(zones: any) {
     this.socket.emit("zoneSubscription", {'socketId': this.socket.ioSocket.id, 'zoneId': zones });
-
   }
 
   zoneUnsubscribe() {
-
     this.socket.emit("subscription", {'zoneId': []});
-
   }
 }
 

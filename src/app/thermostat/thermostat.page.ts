@@ -3,6 +3,7 @@ import { HomePage } from '../home/home.page';
 import { Router } from '@angular/router';
 import { DataService } from '../services/data/data.service';
 import { SocketService } from '../services/socket/socket.service';
+import { Socket } from 'ngx-socket-io';
 
 @Component({
   selector: 'app-thermostat',
@@ -18,7 +19,9 @@ export class ThermostatPage implements OnInit {
   building: any;
 
   component = HomePage;
-  constructor(private route : Router, private dataService : DataService, private socketService : SocketService) { }
+  id: any;
+  status: any;
+  constructor(private route : Router, private dataService : DataService, private socket : Socket) { }
 
   ngOnInit() {
     this.dataService.buildingDetails.subscribe(buidingDetails => {
@@ -42,8 +45,9 @@ export class ThermostatPage implements OnInit {
     } 
   }
 
-  shutDown() {
+  turnPower(id: any) {
     this.power = !this.power;
+    this.socket.emit("power", {"socketId": this.socket.ioSocket.id, "zoneId": id, "status": this.power});
     if (!this.power) {
       document.getElementById("btn-power")?.setAttribute("class", "fa-solid fa-3x fa-power-off");
     }

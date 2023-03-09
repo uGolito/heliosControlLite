@@ -26,7 +26,7 @@
         </button>
       </div>     
       <div class="middle">
-        <div class="cont" (click)="shutDown()" [ngClass] ="power ? 'powerOff' : 'powerOn'">
+        <div class="cont" (click)="turnPower(zone._id)" [ngClass] ="power ? 'powerOff' : 'powerOn'">
           <div class="regu">
             <a class="path">
               <div class="temp">
