@@ -48,7 +48,7 @@ export class HomePage {
         this.qrContent = result.content;
         const qrContentArray = result.content?.split('#');
         // add condition pr verif id
-        if (qrContentArray && qrContentArray[0] === 'helios') {
+        if (qrContentArray && qrContentArray[0] === 'HELIOS') {
           this.dataService.zoneId = qrContentArray[1];
           this.route.navigateByUrl('/pincode');
         } else {

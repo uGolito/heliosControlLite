@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HomePage } from '../home/home.page';
 import { Router } from '@angular/router';
 import { DataService } from '../services/data/data.service';
+import { SocketService } from '../services/socket/socket.service';
 
 @Component({
   selector: 'app-thermostat',
@@ -14,14 +15,17 @@ export class ThermostatPage implements OnInit {
   desiratedTemp = 0;
   power:boolean = true;
   zone : any;
+  building: any;
 
   component = HomePage;
-  constructor(private route : Router, private dataService : DataService) { }
+  constructor(private route : Router, private dataService : DataService, private socketService : SocketService) { }
 
   ngOnInit() {
-    this.dataService.zoneDetails.subscribe(zoneDetails => {
-      if (zoneDetails) {
-        this.zone = zoneDetails;
+    this.dataService.buildingDetails.subscribe(buidingDetails => {
+      if (buidingDetails) {
+        console.log('changement buildingDetails (thermostat)');
+        this.zone = buidingDetails['zone'];
+        this.building = buidingDetails['building']
       }
     })
   }
@@ -41,7 +45,7 @@ export class ThermostatPage implements OnInit {
   shutDown() {
     this.power = !this.power;
     if (!this.power) {
-      document.getElementById("btn-power")?.setAttribute("class", "fa-solid fa-power-off fa-3x");
+      document.getElementById("btn-power")?.setAttribute("class", "fa-solid fa-3x fa-power-off");
     }
     else {
       document.getElementById("btn-power")?.setAttribute("class", "fa-solid fa-power-off");

@@ -6,9 +6,11 @@
     <ion-title>
         <div class="lastTemp">
           <div class="temp-logo">
-            <i class="fa-solid fa-2x fa-location-dot"></i>
+            <i class="fa-solid fa-location-dot"></i>
           </div>      
           <div *ngIf="zone" class="temp-font">{{zone.name}}</div>
+          <i class="fa-solid fa-temperature-half"></i>
+          <div *ngIf="zone" class="temp-font">{{zone.heating.lastTemp}}</div>
         </div>
     </ion-title>
   </ion-toolbar>

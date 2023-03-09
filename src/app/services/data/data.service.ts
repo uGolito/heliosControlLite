@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
-import {  } from 'rxjs';
 
 // old API COMPLETE const DATA_API = 'http://helios.dsc-security.be:7079/api/';
 // new API COMPLETE const DATA_API = 'https://v2.helioscontrol.com/webapi/api/';
@@ -13,7 +12,7 @@ const DATA_API = 'https://v2.helioscontrol.com/webapi/api/';
 export class DataService {
 
   public zoneId : any;
-  public zoneDetails = new BehaviorSubject(null);
+  public buildingDetails = new BehaviorSubject(null);
 
   httpOptions = { 
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
