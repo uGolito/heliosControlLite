@@ -14,9 +14,18 @@ export class SocketService {
       console.log('connected to websocket')
     });
     this.socket.on('datas', (message : any) => {
-      if (message.zoneData && this.buildingDetails) {
-        this.buildingDetails.zone.heating = message.zoneData;
-        this.dataService.buildingDetails.next(this.buildingDetails);
+      console.log(message);
+      if (message.type == "update") {
+        if (message.zoneData && this.buildingDetails) {
+          this.buildingDetails.zone.heating = message.zoneData;
+          this.dataService.buildingDetails.next(this.buildingDetails);
+        }
+      }
+      if (message.type == "power") {
+        if (message.deviceData && this.buildingDetails) {
+          this.buildingDetails.zone.heating.power = message.deviceData.power;
+          this.dataService.buildingDetails.next(this.buildingDetails);
+        }
       }
     })
     this.dataService.buildingDetails.subscribe((buildingDetails:any)  => {

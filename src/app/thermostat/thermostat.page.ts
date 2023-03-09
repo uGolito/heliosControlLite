@@ -28,7 +28,8 @@ export class ThermostatPage implements OnInit {
       if (buidingDetails) {
         console.log('changement buildingDetails (thermostat)');
         this.zone = buidingDetails['zone'];
-        this.building = buidingDetails['building']
+        this.building = buidingDetails['building'];
+        this.power = buidingDetails['zone']['heating']['power'];
       }
     })
   }
