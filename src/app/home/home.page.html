@@ -26,10 +26,15 @@
   <ion-button expand="full" (click)="startScanner()" [hidden]="scanActive">
     SCAN
   </ion-button>
+  <h2>QR Code Content:</h2>
+  <p>{{ qrContent }}</p>
   <ion-row class="scan-button" [hidden]="!scanActive">
     <ion-col class="ion-no-padding">
       <ion-button expand="full" (click)="stopScanner()">Stop</ion-button>
     </ion-col>
   </ion-row>
   <div class="scan-box" [hidden]="!scanActive"></div>
+  <ion-button expand="full" (click)="callApi()">
+    CALL API
+  </ion-button>
 </ion-content>
