@@ -27,6 +27,13 @@ export class SocketService {
           this.dataService.buildingDetails.next(this.buildingDetails);
         }
       }
+      if ( message.type == "preset") {
+        if (message.deviceData && this.buildingDetails) {
+          this.buildingDetails.zone.heating.desiredTemp = message.deviceData.desiredTemp;
+          this.buildingDetails.zone.heating.preset = message.deviceData.preset;
+          this.dataService.buildingDetails.next(this.buildingDetails);
+        }
+      }
     })
     this.dataService.buildingDetails.subscribe((buildingDetails:any)  => {
       if (buildingDetails) {
@@ -49,6 +56,10 @@ export class SocketService {
 
   zoneUnsubscribe() {
     this.socket.emit("subscription", {'zoneId': []});
+  }
+
+  setPreset(id: any, desiredTemp: any, preset: any) {
+    this.socket.emit("preset", {"socketId": this.socket.ioSocket.id, "zoneId": id, "desiredTemp": desiredTemp, "preset": preset});
   }
 }
 

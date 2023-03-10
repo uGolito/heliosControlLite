@@ -21,7 +21,7 @@
     <img class="bg-img" src="../../assets/images/bg-thermo.png" alt="">
     <div class="box">
       <div class="temp-high">
-        <button class="btn btn-high" (click)="upTemp()" [ngClass] ="power ? 'enable' : 'disable'">
+        <button class="btn btn-high" (click)="sendCommandPlus(zone._id)" [ngClass] ="power ? 'enable' : 'disable'">
           <span><i class="fa-solid fa-2x fa-plus"></i></span>
         </button>
       </div>     
@@ -41,7 +41,7 @@
         </div>
       </div>
       <div class="temp-down">
-        <button class="btn btn-down" (click)="downTemp()" [ngClass] ="power ? 'enable' : 'disable'">
+        <button class="btn btn-down" (click)="sendCommandMinus(zone._id)" [ngClass] ="power ? 'enable' : 'disable'">
           <span><i class="fa-solid fa-2x fa-minus"></i></span>
         </button>
       </div>

@@ -3,7 +3,6 @@ import { HomePage } from '../home/home.page';
 import { Router } from '@angular/router';
 import { DataService } from '../services/data/data.service';
 import { SocketService } from '../services/socket/socket.service';
-import { Socket } from 'ngx-socket-io';
 
 @Component({
   selector: 'app-thermostat',
@@ -13,7 +12,7 @@ import { Socket } from 'ngx-socket-io';
 export class ThermostatPage implements OnInit {
 
   lastTemp = 0;
-  desiratedTemp = 0;
+  desiredTemp = 0;
   power:boolean = true;
   zone : any;
   building: any;
@@ -21,34 +20,42 @@ export class ThermostatPage implements OnInit {
   component = HomePage;
   id: any;
   status: any;
-  constructor(private route : Router, private dataService : DataService, private socket : Socket) { }
+  constructor(private route : Router, private dataService : DataService, private socketService : SocketService) { }
 
   ngOnInit() {
     this.dataService.buildingDetails.subscribe(buidingDetails => {
       if (buidingDetails) {
         console.log('changement buildingDetails (thermostat)');
         this.zone = buidingDetails['zone'];
+        console.log(buidingDetails);
         this.building = buidingDetails['building'];
         this.power = buidingDetails['zone']['heating']['power'];
+        this.desiredTemp = buidingDetails['zone']['heating']['desiredTemp'];
+      }
+      else {
+        this.route.navigate(['/pincode']);
       }
     })
   }
 
-  upTemp() {
+  sendCommandPlus(id: string) {
     if (this.power) {
-      this.desiratedTemp++;
+      this.zone.heating.desiredTemp++;
+      console.log(id);
+      this.socketService.setPreset(id, this.zone.heating.desiredTemp, "bypass");
     } 
   }
 
-  downTemp() {
+  sendCommandMinus(id: string) {
     if (this.power) {
-      this.desiratedTemp--;
+      this.zone.heating.desiredTemp--;
+      this.socketService.setPreset(id, this.zone.heating.desiredTemp, "bypass");
     } 
   }
 
   turnPower(id: any) {
     this.power = !this.power;
-    this.socket.emit("power", {"socketId": this.socket.ioSocket.id, "zoneId": id, "status": this.power});
+    this.socketService.setPower(id, this.power);
     if (!this.power) {
       document.getElementById("btn-power")?.setAttribute("class", "fa-solid fa-3x fa-power-off");
     }
