@@ -30,9 +30,6 @@ export class ThermostatPage implements OnInit {
         this.power = buildingDetails['zone']['heating']['power'];
         this.desiredTemp = buildingDetails['zone']['heating']['desiredTemp'];
       }
-      else {
-        this.route.navigate(['/pincode'])
-      }
     })
   }
 
