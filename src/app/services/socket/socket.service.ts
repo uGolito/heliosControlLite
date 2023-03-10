@@ -10,11 +10,7 @@ export class SocketService {
   buildingDetails : any;
   
   constructor(private socket: Socket, public dataService : DataService) { 
-    this.socket.on('connected', (conn: any) => {
-      console.log('connected to websocket')
-    });
     this.socket.on('datas', (message : any) => {
-      console.log(message);
       if (message.type == "update") {
         if (message.zoneData && this.buildingDetails) {
           this.buildingDetails.zone.heating = message.zoneData;

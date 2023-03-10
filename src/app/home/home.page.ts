@@ -72,11 +72,4 @@ export class HomePage {
     BarcodeScanner.stopScan();
     this.scanActive = false;
   }
-
-  callApi() {
-    this.dataService.apiRequest('building/single', { 'zoneId' : '61714a7923ccb226672366a6' }).subscribe(response => {
-    this.myResponse = response;
-    console.log(this.myResponse);
-    })
-  }
 }

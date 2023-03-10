@@ -26,7 +26,6 @@ export class PincodePage implements OnInit {
   onConfirm() {
     this.dataService.apiRequest('building/single', { 'zoneId' : '61714a7923ccb226672366a6' }).pipe(first()).subscribe(response => {
       if (response['message'].status == 200) {
-        console.log('next dans pincode');
         this.dataService.buildingDetails.next(response['message']);
         this.myResponse = response['message'].zone;
         this.socketService.zoneSubscribe([this.myResponse._id]);

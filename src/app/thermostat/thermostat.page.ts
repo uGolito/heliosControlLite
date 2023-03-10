@@ -25,29 +25,28 @@ export class ThermostatPage implements OnInit {
   ngOnInit() {
     this.dataService.buildingDetails.subscribe(buidingDetails => {
       if (buidingDetails) {
-        console.log('changement buildingDetails (thermostat)');
         this.zone = buidingDetails['zone'];
-        console.log(buidingDetails);
         this.building = buidingDetails['building'];
         this.power = buidingDetails['zone']['heating']['power'];
         this.desiredTemp = buidingDetails['zone']['heating']['desiredTemp'];
       }
       else {
-        this.route.navigate(['/pincode']);
+        this.route.navigate(['/pincode'])
       }
     })
   }
 
   sendCommandPlus(id: string) {
     if (this.power) {
+      if ((this.zone.heating.desiredTemp - this.zone.heating.calendarTemp) < 2) {
       this.zone.heating.desiredTemp++;
-      console.log(id);
       this.socketService.setPreset(id, this.zone.heating.desiredTemp, "bypass");
+      }
     } 
   }
 
   sendCommandMinus(id: string) {
-    if (this.power) {
+    if (this.power && this.zone.heating.desiredTemp > 0) {
       this.zone.heating.desiredTemp--;
       this.socketService.setPreset(id, this.zone.heating.desiredTemp, "bypass");
     } 
