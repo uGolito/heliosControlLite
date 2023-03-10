@@ -23,12 +23,12 @@ export class ThermostatPage implements OnInit {
   constructor(private route : Router, private dataService : DataService, private socketService : SocketService) { }
 
   ngOnInit() {
-    this.dataService.buildingDetails.subscribe(buidingDetails => {
-      if (buidingDetails) {
-        this.zone = buidingDetails['zone'];
-        this.building = buidingDetails['building'];
-        this.power = buidingDetails['zone']['heating']['power'];
-        this.desiredTemp = buidingDetails['zone']['heating']['desiredTemp'];
+    this.dataService.buildingDetails.subscribe(buildingDetails => {
+      if (buildingDetails) {
+        this.zone = buildingDetails['zone'];
+        this.building = buildingDetails['building'];
+        this.power = buildingDetails['zone']['heating']['power'];
+        this.desiredTemp = buildingDetails['zone']['heating']['desiredTemp'];
       }
       else {
         this.route.navigate(['/pincode'])

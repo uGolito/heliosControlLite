@@ -24,7 +24,7 @@ export class PincodePage implements OnInit {
 
   // id'61714a7923ccb226672366a6'   -> this.code
   onConfirm() {
-    this.dataService.apiRequest('building/single', { 'zoneId' : '61714a7923ccb226672366a6' }).pipe(first()).subscribe(response => {
+    this.dataService.apiRequest('building/single', { 'zoneId' : this.code }).pipe(first()).subscribe(response => {
       if (response['message'].status == 200) {
         this.dataService.buildingDetails.next(response['message']);
         this.myResponse = response['message'].zone;
