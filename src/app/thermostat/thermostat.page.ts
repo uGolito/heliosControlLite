@@ -52,12 +52,6 @@ export class ThermostatPage implements OnInit {
   turnPower(id: any) {
     this.power = !this.power;
     this.socketService.setPower(id, this.power);
-    if (!this.power) {
-      document.getElementById("btn-power")?.setAttribute("class", "fa-solid fa-3x fa-power-off");
-    }
-    else {
-      document.getElementById("btn-power")?.setAttribute("class", "fa-solid fa-power-off");
-    }
   }
 }
 

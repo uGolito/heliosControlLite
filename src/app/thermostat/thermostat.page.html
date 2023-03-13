@@ -4,47 +4,40 @@
       <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-title>
-        <div class="lastTemp">
-          <div class="temp-logo">
-            <i class="fa-solid fa-location-dot"></i>
-          </div>      
-          <div *ngIf="zone" class="temp-font">{{zone.name}}</div>
-          <i class="fa-solid fa-temperature-half"></i>
-          <div *ngIf="zone" class="temp-font">{{zone.heating.lastTemp}}</div>
+        <div class="zone">     
+          <div *ngIf="zone" class="zone-font">{{zone.name}}</div>
         </div>
     </ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
-  <div class="bg" >
-    <img class="bg-img" src="../../assets/images/bg-thermo.png" alt="">
-    <div class="box">
-      <div class="temp-high">
-        <button class="btn btn-high" (click)="sendCommandPlus(zone._id)" [ngClass] ="power ? 'enable' : 'disable'">
-          <span><i class="fa-solid fa-2x fa-plus"></i></span>
-        </button>
-      </div>     
-      <div class="middle">
-        <div class="cont" (click)="turnPower(zone._id)" [ngClass] ="power ? 'powerOff' : 'powerOn'">
-          <div class="regu">
-            <a class="path">
-              <div class="temp">
-                <i class="fa-solid fa-power-off" id="btn-power"></i>
-                <ng-container *ngIf="power && zone">
-                  {{ zone.heating.desiredTemp }}°
-                </ng-container>
-              </div>
-            </a>
-            <div class="led " [ngClass] ="power ? 'on' : 'off'"></div>
-          </div>
+  <div class="temp-header">
+    <i class="fa-solid fa-2x fa-temperature-half"></i>
+    <div *ngIf="zone" class="temp-font">{{zone.heating.lastTemp}}°</div>
+  </div>
+  <div class="content">
+    <div class="plus">
+      <button class="btn btn-high" (click)="sendCommandPlus(zone._id)" [ngClass] ="power ? 'enable' : 'disable'">
+      <span><i class="fa-solid fa-2x fa-plus"></i></span>
+      </button>
+    </div>
+    <div class="desired-temp">
+      <div class="thermostat" (click)="turnPower(zone._id)">
+        <div class="temp" [ngClass] ="power ? 'powerOn' : 'powerOff'">
+          <i class="fa-solid fa-3x fa-power-off" id="btn-power"></i>
+          <div class="temp-font-thermo">
+            <ng-container *ngIf="power && zone">
+              {{ zone.heating.desiredTemp }}°
+            </ng-container>
+          </div>   
         </div>
+        <div class="led" [ngClass] ="power ? 'on' : 'off'"></div>
       </div>
-      <div class="temp-down">
-        <button class="btn btn-down" (click)="sendCommandMinus(zone._id)" [ngClass] ="power ? 'enable' : 'disable'">
-          <span><i class="fa-solid fa-2x fa-minus"></i></span>
-        </button>
-      </div>
+    </div>
+    <div class="min">
+      <button class="btn btn-down" (click)="sendCommandMinus(zone._id)" [ngClass] ="power ? 'enable' : 'disable'">
+      <span><i class="fa-solid fa-2x fa-minus"></i></span>
+      </button>
     </div>
   </div>
 </ion-content>
