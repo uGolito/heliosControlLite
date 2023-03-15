@@ -40,6 +40,7 @@ export class PincodePage implements OnInit {
       }
     })    
   }
+  
 
   navigation(url : String) {
     this.route.navigate(['/'+url]);
