@@ -26,9 +26,7 @@ export class PincodePage implements OnInit {
   // id'61714a7923ccb226672366a6'   -> this.code
   onConfirm() {
     let codePin = this.pincode.join(""); 
-    console.log(codePin);
     this.dataService.apiRequest('building/single', { 'zoneId' : this.code, 'pincode' : codePin}).pipe(first()).subscribe(response => {
-      console.log(response);
       if (response['message'].status == 401) {
         this.snackBar.open('Le code PIN n\'est pas bon', 'OK', {duration: 3000});
       }
@@ -40,7 +38,6 @@ export class PincodePage implements OnInit {
       }
     })    
   }
-  
 
   navigation(url : String) {
     this.route.navigate(['/'+url]);
@@ -50,6 +47,5 @@ export class PincodePage implements OnInit {
     document.getElementById('code'+code)?.focus();
     this.pincode[(code-2)] = '';
   }
-
 }
 
