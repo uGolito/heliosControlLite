@@ -23,7 +23,6 @@ export class PincodePage implements OnInit {
     this.code = this.dataService.zoneId;
   }
 
-  // id'61714a7923ccb226672366a6'   -> this.code
   onConfirm() {
     let codePin = this.pincode.join(""); 
     this.dataService.apiRequest('building/single', { 'zoneId' : this.code, 'pincode' : codePin}).pipe(first()).subscribe(response => {
@@ -44,8 +43,11 @@ export class PincodePage implements OnInit {
   }
 
   maFonction(code: any) {
-    document.getElementById('code'+code)?.focus();
-    this.pincode[(code-2)] = '';
+    document.getElementById('code'+code)?.focus();    
+  }
+
+  maFonction2(code: any) {
+    this.pincode[code] = '';
   }
 }
 
