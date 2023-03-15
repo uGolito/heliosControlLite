@@ -8,12 +8,14 @@ import { PincodePageRoutingModule } from './pincode-routing.module';
 
 import { PincodePage } from './pincode.page';
 
+
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    PincodePageRoutingModule
+    PincodePageRoutingModule,
   ],
   declarations: [PincodePage]
 })

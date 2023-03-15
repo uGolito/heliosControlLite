@@ -16,6 +16,7 @@ export class HomePage {
   scanActive: boolean = false;
   qrContent: any;
   qrContentElement: any;
+  scanBackground = "url('../assets/images/bg-home.png')";
 
   //pour test api onWeb
   myResponse : any;
@@ -71,12 +72,5 @@ export class HomePage {
   ionViewWillLeave() {
     BarcodeScanner.stopScan();
     this.scanActive = false;
-  }
-
-  callApi() {
-    this.dataService.apiRequest('building/single', { 'zoneId' : '61714a7923ccb226672366a6' }).subscribe(response => {
-    this.myResponse = response;
-    console.log(this.myResponse);
-    })
   }
 }

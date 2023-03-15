@@ -12,44 +12,46 @@ import { SocketService } from '../services/socket/socket.service';
 export class ThermostatPage implements OnInit {
 
   lastTemp = 0;
-  desiratedTemp = 0;
+  desiredTemp = 0;
   power:boolean = true;
   zone : any;
   building: any;
 
   component = HomePage;
+  id: any;
+  status: any;
   constructor(private route : Router, private dataService : DataService, private socketService : SocketService) { }
 
   ngOnInit() {
-    this.dataService.buildingDetails.subscribe(buidingDetails => {
-      if (buidingDetails) {
-        console.log('changement buildingDetails (thermostat)');
-        this.zone = buidingDetails['zone'];
-        this.building = buidingDetails['building']
+    this.dataService.buildingDetails.subscribe(buildingDetails => {
+      if (buildingDetails) {
+        this.zone = buildingDetails['zone'];
+        this.building = buildingDetails['building'];
+        this.power = buildingDetails['zone']['heating']['power'];
+        this.desiredTemp = buildingDetails['zone']['heating']['desiredTemp'];
       }
     })
   }
 
-  upTemp() {
+  sendCommandPlus(id: string) {
     if (this.power) {
-      this.desiratedTemp++;
+      if ((this.zone.heating.desiredTemp - this.zone.heating.calendarTemp) < 2) {
+      this.zone.heating.desiredTemp++;
+      this.socketService.setPreset(id, this.zone.heating.desiredTemp, "bypass");
+      }
     } 
   }
 
-  downTemp() {
-    if (this.power) {
-      this.desiratedTemp--;
+  sendCommandMinus(id: string) {
+    if (this.power && this.zone.heating.desiredTemp > 0) {
+      this.zone.heating.desiredTemp--;
+      this.socketService.setPreset(id, this.zone.heating.desiredTemp, "bypass");
     } 
   }
 
-  shutDown() {
+  turnPower(id: any) {
     this.power = !this.power;
-    if (!this.power) {
-      document.getElementById("btn-power")?.setAttribute("class", "fa-solid fa-3x fa-power-off");
-    }
-    else {
-      document.getElementById("btn-power")?.setAttribute("class", "fa-solid fa-power-off");
-    }
+    this.socketService.setPower(id, this.power);
   }
 }
 
