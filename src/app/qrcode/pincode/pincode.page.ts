@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { SocketService } from 'src/app/services/socket/socket.service';
 import { DataService } from '../../services/data/data.service';
 import { first } from 'rxjs';
-import { focusElement } from '@ionic/core/dist/types/utils/helpers';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-pincode',
@@ -17,7 +17,7 @@ export class PincodePage implements OnInit {
   zoneSubscription!: Subscription;
   pincode = ['','','','']
 
-  constructor(private route: Router, private dataService: DataService, private socketService : SocketService) { }
+  constructor(private route: Router, private dataService: DataService, private socketService : SocketService, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.code = this.dataService.zoneId;
@@ -30,8 +30,7 @@ export class PincodePage implements OnInit {
     this.dataService.apiRequest('building/single', { 'zoneId' : this.code, 'pincode' : codePin}).pipe(first()).subscribe(response => {
       console.log(response);
       if (response['message'].status == 401) {
-        console.log('erreur de pin');
-        // snackbar code pin pas bon
+        this.snackBar.open('Le code PIN n\'est pas bon', 'OK', {duration: 3000});
       }
       if (response['message'].status == 200) {
         this.dataService.buildingDetails.next(response['message']);
@@ -39,7 +38,6 @@ export class PincodePage implements OnInit {
         this.socketService.zoneSubscribe([this.myResponse._id]);
         this.route.navigate(['/thermostat']);
       }
-      // snackbar mauvaise piece
     })    
   }
 
@@ -48,8 +46,8 @@ export class PincodePage implements OnInit {
   }
 
   maFonction(code: any) {
-    console.log('code'+code);
     document.getElementById('code'+code)?.focus();
+    this.pincode[(code-2)] = '';
   }
 
 }
