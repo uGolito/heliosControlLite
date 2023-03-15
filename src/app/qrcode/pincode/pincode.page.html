@@ -21,10 +21,10 @@
     </div>
     <form action="">
       <div class="container-form">
-        <input type="number" inputmode="numeric" class="num" id="code1" [(ngModel)]="pincode[0]" maxlength="1" (keyup)="maFonction(2)" required [ngModelOptions]="{standalone: true}">
-        <input type="number" inputmode="numeric" class="num" id="code2" [(ngModel)]="pincode[1]" maxlength="1" (keyup)="maFonction(3)" required [ngModelOptions]="{standalone: true}">
-        <input type="number" inputmode="numeric" class="num" id="code3" [(ngModel)]="pincode[2]" maxlength="1" (keyup)="maFonction(4)" required [ngModelOptions]="{standalone: true}">
-        <input type="number" inputmode="numeric" class="num" id="code4" [(ngModel)]="pincode[3]" maxlength="1" required [ngModelOptions]="{standalone: true}">
+        <input type="number" inputmode="numeric" class="num" id="code1" [(ngModel)]="pincode[0]" maxlength="1" (focus)="maFonction2(0)" (keyup)="maFonction(2)" required [ngModelOptions]="{standalone: true}">
+        <input type="number" inputmode="numeric" class="num" id="code2" [(ngModel)]="pincode[1]" maxlength="1" (focus)="maFonction2(1)" (keyup)="maFonction(3)" required [ngModelOptions]="{standalone: true}">
+        <input type="number" inputmode="numeric" class="num" id="code3" [(ngModel)]="pincode[2]" maxlength="1" (focus)="maFonction2(2)" (keyup)="maFonction(4)" required [ngModelOptions]="{standalone: true}">
+        <input type="number" inputmode="numeric" class="num" id="code4" [(ngModel)]="pincode[3]" maxlength="1" (focus)="maFonction2(3)" required [ngModelOptions]="{standalone: true}">
       </div>     
     </form>
     <div class="buttons-container">
