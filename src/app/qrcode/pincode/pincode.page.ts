@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { SocketService } from 'src/app/services/socket/socket.service';
 import { DataService } from '../../services/data/data.service';
 import { first } from 'rxjs';
+import { focusElement } from '@ionic/core/dist/types/utils/helpers';
 
 @Component({
   selector: 'app-pincode',
@@ -26,7 +27,7 @@ export class PincodePage implements OnInit {
   onConfirm() {
     let codePin = this.pincode.join(""); 
     console.log(codePin);
-    this.dataService.apiRequest('building/single', { 'zoneId' : '61714a7923ccb226672366a6', 'pincode' : codePin}).pipe(first()).subscribe(response => {
+    this.dataService.apiRequest('building/single', { 'zoneId' : this.code, 'pincode' : codePin}).pipe(first()).subscribe(response => {
       console.log(response);
       if (response['message'].status == 401) {
         console.log('erreur de pin');
@@ -44,6 +45,11 @@ export class PincodePage implements OnInit {
 
   navigation(url : String) {
     this.route.navigate(['/'+url]);
+  }
+
+  maFonction(code: any) {
+    console.log('code'+code);
+    document.getElementById('code'+code)?.focus();
   }
 
 }

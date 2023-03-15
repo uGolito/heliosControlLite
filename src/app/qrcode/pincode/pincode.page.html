@@ -19,15 +19,12 @@
     <div class="logo">
       <img src="../../../assets/images/logo_helios.png" alt="Logo">
     </div>
-    <!-- <div class="input-container">
-      <ion-input type="text" placeholder="Enter code pin"></ion-input>
-    </div> -->
     <form action="">
       <div class="container-form">
-        <ion-input type="number" inputmode="numeric" class="num" [(ngModel)]="pincode[0]" maxlength="1" required [ngModelOptions]="{standalone: true}"></ion-input>
-        <ion-input type="number" inputmode="numeric" class="num" [(ngModel)]="pincode[1]" maxlength="1" required [ngModelOptions]="{standalone: true}"></ion-input>
-        <ion-input type="number" inputmode="numeric" class="num" [(ngModel)]="pincode[2]" maxlength="1" required [ngModelOptions]="{standalone: true}"></ion-input>
-        <ion-input type="number" inputmode="numeric" class="num" [(ngModel)]="pincode[3]" maxlength="1" required [ngModelOptions]="{standalone: true}"></ion-input>
+        <input type="number" inputmode="numeric" class="num" id="code1" [(ngModel)]="pincode[0]" maxlength="1" (keyup)="maFonction(2)" required [ngModelOptions]="{standalone: true}">
+        <input type="number" inputmode="numeric" class="num" id="code2" [(ngModel)]="pincode[1]" maxlength="1" (keyup)="maFonction(3)" required [ngModelOptions]="{standalone: true}">
+        <input type="number" inputmode="numeric" class="num" id="code3" [(ngModel)]="pincode[2]" maxlength="1" (keyup)="maFonction(4)" required [ngModelOptions]="{standalone: true}">
+        <input type="number" inputmode="numeric" class="num" id="code4" [(ngModel)]="pincode[3]" maxlength="1" required [ngModelOptions]="{standalone: true}">
       </div>     
     </form>
     <div class="buttons-container">
