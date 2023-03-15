@@ -11,10 +11,10 @@ import { first } from 'rxjs';
   styleUrls: ['./pincode.page.scss'],
 })
 export class PincodePage implements OnInit {
-  showCode = false;
   code :any;
   myResponse : any;
   zoneSubscription!: Subscription;
+  pincode = ['','','','']
 
   constructor(private route: Router, private dataService: DataService, private socketService : SocketService) { }
 
@@ -24,19 +24,27 @@ export class PincodePage implements OnInit {
 
   // id'61714a7923ccb226672366a6'   -> this.code
   onConfirm() {
-    this.dataService.apiRequest('building/single', { 'zoneId' : this.code }).pipe(first()).subscribe(response => {
+    let codePin = this.pincode.join(""); 
+    console.log(codePin);
+    this.dataService.apiRequest('building/single', { 'zoneId' : '61714a7923ccb226672366a6', 'pincode' : codePin}).pipe(first()).subscribe(response => {
+      console.log(response);
+      if (response['message'].status == 401) {
+        console.log('erreur de pin');
+        // snackbar code pin pas bon
+      }
       if (response['message'].status == 200) {
         this.dataService.buildingDetails.next(response['message']);
         this.myResponse = response['message'].zone;
         this.socketService.zoneSubscribe([this.myResponse._id]);
+        this.route.navigate(['/thermostat']);
       }
-    })
-    this.showCode = false;
-    this.route.navigate(['/thermostat']);
+      // snackbar mauvaise piece
+    })    
   }
 
   navigation(url : String) {
     this.route.navigate(['/'+url]);
   }
+
 }
 
