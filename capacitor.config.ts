@@ -1,7 +1,7 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
+  appId: 'helios.mobile.light',
   appName: 'Mobile',
   webDir: 'www',
   bundledWebRuntime: false
