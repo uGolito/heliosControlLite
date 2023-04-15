@@ -39,6 +39,7 @@ export class HomePage {
     const allowed = await this.checkPermission();
 
     if (allowed) {
+      document.querySelector('body')?.classList.add('scanner-active');
       this.scanActive = true;
       BarcodeScanner.hideBackground();
 
@@ -67,6 +68,7 @@ export class HomePage {
   stopScanner() {
     BarcodeScanner.stopScan();
     this.scanActive = false;
+    document.querySelector('body')?.classList.remove('scanner-active');
   }
 
   ionViewWillLeave() {
