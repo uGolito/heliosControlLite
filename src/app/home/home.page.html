@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="dark">
+  <ion-toolbar color="dark" style="color: #222428;">
     <ion-title>
       <img alt="logo" id="header_logo" center class="logo" src="/assets/images/Heliois white.png">
     </ion-title>
@@ -23,12 +23,12 @@
   [fullscreen]="true"
   [style.--background]="scanActive?'#00000000':scanBackground"
 >
-  <ion-button expand="full" size="large" color="success" (click)="startScanner()" [hidden]="scanActive" style="margin-top: 90%;">
+  <ion-button expand="full" size="large" color="success" style="color: #036600;" (click)="startScanner()" [hidden]="scanActive" style="margin-top: 90%;">
     SCAN
   </ion-button>
   <ion-row class="scan-button" [hidden]="!scanActive">
     <ion-col class="ion-no-padding">
-      <ion-button color="success" expand="full" (click)="stopScanner()" size="large">STOP</ion-button>
+      <ion-button color="success" style="color: #036600;" expand="full" (click)="stopScanner()" size="large">STOP</ion-button>
     </ion-col>
   </ion-row>
   <div class="scan-box" [hidden]="!scanActive"></div>
