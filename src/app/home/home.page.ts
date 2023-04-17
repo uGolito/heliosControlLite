@@ -16,8 +16,7 @@ export class HomePage {
   scanActive: boolean = false;
   qrContent: any;
   qrContentElement: any;
-  scanBackground = "url('../assets/images/bg-home.png')";
-
+  scanBackground = "url('../assets/images/bg-home.png') no-repeat";
   //pour test api onWeb
   myResponse : any;
 
