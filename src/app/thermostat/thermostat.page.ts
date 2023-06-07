@@ -16,7 +16,7 @@ export class ThermostatPage implements OnInit {
   power:boolean = true;
   zone : any;
   building: any;
-  displayTemp = 0;
+  displayTemp: any;
 
   component = HomePage;
   id: any;
@@ -32,24 +32,27 @@ export class ThermostatPage implements OnInit {
         this.desiredTemp = buildingDetails['zone']['heating']['desiredTemp'];
       }
     })
+    this.displayTemp = this.zone.heating.desiredTemp;
   }
 
   sendCommandPlus(id: string) {
     if (this.power) {
-      this.displayTemp = this.zone.heating.desiredTemp;
-      while (this.displayTemp <= 28) {
-        this.displayTemp++;
+      if (this.displayTemp < 28) {
+        this.displayTemp++; 
+        console.log(this.zone.heating.desiredTemp);
         if ((this.zone.heating.desiredTemp - this.zone.heating.calendarTemp) < 2) {
           this.zone.heating.desiredTemp++;
           this.socketService.setPreset(id, this.zone.heating.desiredTemp, "bypass");
         }
       }
-    } 
+    }
   }
+  
 
   sendCommandMinus(id: string) {
     if (this.power && this.zone.heating.desiredTemp > 0) {
       this.zone.heating.desiredTemp--;
+      this.displayTemp--;
       this.socketService.setPreset(id, this.zone.heating.desiredTemp, "bypass");
     } 
   }
