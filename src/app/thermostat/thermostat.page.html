@@ -4,9 +4,14 @@
       <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-title>
+      <div class="pw-title">
+        <div class="logo-house">
+          <ion-icon name="home-outline" size="large" style="color: white; padding-right: 15px;"></ion-icon>
+        </div>
         <div class="zone">     
           <div *ngIf="zone" class="zone-font">{{zone.name}}</div>
         </div>
+      </div>
     </ion-title>
   </ion-toolbar>
 </ion-header>
