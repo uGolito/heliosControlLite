@@ -39,7 +39,6 @@ export class ThermostatPage implements OnInit {
     if (this.power) {
       if (this.displayTemp < 28) {
         this.displayTemp++; 
-        console.log(this.zone.heating.desiredTemp);
         if ((this.zone.heating.desiredTemp - this.zone.heating.calendarTemp) < 2) {
           this.zone.heating.desiredTemp++;
           this.socketService.setPreset(id, this.zone.heating.desiredTemp, "bypass");
@@ -50,7 +49,10 @@ export class ThermostatPage implements OnInit {
   
 
   sendCommandMinus(id: string) {
-    if (this.power && this.zone.heating.desiredTemp > 0) {
+    if (this.displayTemp > this.desiredTemp) {
+      this.displayTemp--;
+    }
+    if (this.power && this.zone.heating.desiredTemp > 0 && this.displayTemp === this.zone.heating.desiredTemp) {
       this.zone.heating.desiredTemp--;
       this.displayTemp--;
       this.socketService.setPreset(id, this.zone.heating.desiredTemp, "bypass");
