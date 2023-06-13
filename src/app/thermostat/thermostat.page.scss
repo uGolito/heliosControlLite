@@ -8,15 +8,10 @@
 }
 
 .temp-font {
-  color: #75B838;
-  font-weight: bold;
+  color: white;
+  font-family: futura;
   font-size: 2em;
   margin-right: 5%;
-}
-
-.fa-temperature-half {
-  color: white;
-  margin-right: 2%;
 }
 
 /* CONTENT */
@@ -31,9 +26,16 @@ ion-content {
 }
 
 .zone-font {
-  color: #75B838;
-  font-weight: bold;
+  color: white;
+  font-family: futura;
   font-size: 1.5em;
+}
+
+.pw-title {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* BUTTONS */

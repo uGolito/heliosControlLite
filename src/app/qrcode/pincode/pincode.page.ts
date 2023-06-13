@@ -25,7 +25,7 @@ export class PincodePage implements OnInit {
 
   onConfirm() {
     let codePin = this.pincode.join(""); 
-    this.dataService.apiRequest('building/single', { 'zoneId' : this.code, 'pincode' : codePin}).pipe(first()).subscribe(response => {
+    this.dataService.apiRequest('building/single', { 'zoneId' : '61714a7923ccb226672366a6', 'pincode' : codePin}).pipe(first()).subscribe(response => {
       if (response['message'].status == 401) {
         this.snackBar.open('Le code PIN n\'est pas bon', 'OK', {duration: 3000});
       }

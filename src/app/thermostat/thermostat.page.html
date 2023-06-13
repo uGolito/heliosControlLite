@@ -1,18 +1,23 @@
 <ion-header>
-  <ion-toolbar color="dark">
+  <ion-toolbar color="dark" style="color: #222428;">
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-title>
+      <div class="pw-title">
+        <div class="logo-house">
+          <ion-icon name="home-outline" size="large" style="color: white; padding-right: 15px;"></ion-icon>
+        </div>
         <div class="zone">     
           <div *ngIf="zone" class="zone-font">{{zone.name}}</div>
         </div>
+      </div>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>
   <div class="temp-header">
-    <i class="fa-solid fa-2x fa-temperature-half"></i>
+    <ion-icon name="thermometer-outline" size="large" style="color: white"></ion-icon>
     <div *ngIf="zone" class="temp-font">{{zone.heating.lastTemp}}°</div>
   </div>
   <div class="content">
@@ -27,7 +32,7 @@
           <i class="fa-solid fa-3x fa-power-off" id="btn-power"></i>
           <div class="temp-font-thermo">
             <ng-container *ngIf="power && zone">
-              {{ zone.heating.desiredTemp }}°
+              {{ displayTemp }}°
             </ng-container>
           </div>   
         </div>

@@ -1,34 +1,21 @@
 <ion-header>
-  <ion-toolbar color="dark">
+  <ion-toolbar color="dark" style="color: #222428;">
     <ion-title>
-      <img alt="logo" id="header_logo" center class="logo" src="/assets/images/Heliois white.png">
+      <img alt="logo" id="header_logo" center class="logo" src="/assets/images/logo helios blanc 2.png">
     </ion-title>
   </ion-toolbar>
 </ion-header>
-
-<!--
-<ion-content>
-  <div class="bg">
-    <img
-      class="bg-img"
-      src="../../assets/images/bg-home.png"
-      alt=""
-    >
-    <ion-button expand="block" size="large" color="success" class="btn-home" (click)="startScanner()">Scan QR code</ion-button> 
-  </div>
-</ion-content>
--->
 
 <ion-content
   [fullscreen]="true"
   [style.--background]="scanActive?'#00000000':scanBackground"
 >
-  <ion-button expand="full" size="large" color="success" (click)="startScanner()" [hidden]="scanActive" style="margin-top: 90%;">
+  <ion-button expand="full" size="large" color="success" style="color: #036600;" (click)="startScanner()" [hidden]="scanActive" style="margin-top: 90%;">
     SCAN
   </ion-button>
   <ion-row class="scan-button" [hidden]="!scanActive">
     <ion-col class="ion-no-padding">
-      <ion-button expand="full" (click)="stopScanner()">Stop</ion-button>
+      <ion-button color="success" style="color: #036600;" expand="full" (click)="stopScanner()" size="large">STOP</ion-button>
     </ion-col>
   </ion-row>
   <div class="scan-box" [hidden]="!scanActive"></div>

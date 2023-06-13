@@ -16,8 +16,7 @@ export class HomePage {
   scanActive: boolean = false;
   qrContent: any;
   qrContentElement: any;
-  scanBackground = "url('../assets/images/bg-home.png')";
-
+  scanBackground = "url('../assets/images/bg-home.png') no-repeat";
   //pour test api onWeb
   myResponse : any;
 
@@ -35,38 +34,44 @@ export class HomePage {
     });
   }
 
-  async startScanner() {
-    const allowed = await this.checkPermission();
+  // async startScanner() {
+  //   const allowed = await this.checkPermission();
 
-    if (allowed) {
-      this.scanActive = true;
-      BarcodeScanner.hideBackground();
+  //   if (allowed) {
+  //     document.querySelector('body')?.classList.add('scanner-active');
+  //     this.scanActive = true;
+  //     BarcodeScanner.hideBackground();
 
-      const result = await BarcodeScanner.startScan();
+  //     const result = await BarcodeScanner.startScan();
 
-      if (result.hasContent) {
-        this.scanActive = false;
-        this.qrContent = result.content;
-        const qrContentArray = result.content?.split('#');
-        // add condition pr verif id
-        if (qrContentArray && qrContentArray[0] === 'HELIOS') {
-          this.dataService.zoneId = qrContentArray[1];
-          this.route.navigateByUrl('/pincode');
-        } else {
-          this.snackBar.open('Ce n\'est pas un QR code HELIOS', 'OK', {duration: 3000});
-          this.route.navigateByUrl('/home');
-        }
-      } else {
-        this.snackBar.open('Aucune donnée trouvée dans le code QR', 'OK', {duration: 3000});
-      }
-    } else {
-      this.snackBar.open('L\'accès à la caméra n\'est pas autorisé', 'OK', {duration: 3000});
-    }
+  //     if (result.hasContent) {
+  //       this.scanActive = false;
+  //       this.qrContent = result.content;
+  //       const qrContentArray = result.content?.split('#');
+  //       // add condition pr verif id
+  //       if (qrContentArray && qrContentArray[0] === 'HELIOS') {
+  //         this.dataService.zoneId = qrContentArray[1];
+  //         this.route.navigateByUrl('/pincode');
+  //       } else {
+  //         this.snackBar.open('Ce n\'est pas un QR code HELIOS', 'OK', {duration: 3000});
+  //         this.route.navigateByUrl('/home');
+  //       }
+  //     } else {
+  //       this.snackBar.open('Aucune donnée trouvée dans le code QR', 'OK', {duration: 3000});
+  //     }
+  //   } else {
+  //     this.snackBar.open('L\'accès à la caméra n\'est pas autorisé', 'OK', {duration: 3000});
+  //   }
+  // }
+
+  startScanner() {
+    this.route.navigateByUrl('/pincode');
   }
 
   stopScanner() {
     BarcodeScanner.stopScan();
     this.scanActive = false;
+    document.querySelector('body')?.classList.remove('scanner-active');
   }
 
   ionViewWillLeave() {
