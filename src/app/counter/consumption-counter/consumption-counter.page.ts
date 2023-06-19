@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CameraResultType, CameraSource, Camera } from '@capacitor/camera';
 import { Plugins } from '@capacitor/core';
-import * as Tesseract from 'tesseract.js';
-import { createCanvas, loadImage } from 'canvas';
+import { OCR, OCRResult, OCRSourceType } from '@awesome-cordova-plugins/ocr/ngx';
 
 
 @Component({
@@ -13,7 +12,7 @@ import { createCanvas, loadImage } from 'canvas';
 export class ConsumptionCounterPage implements OnInit {
   decodedText: string = '';
 
-  constructor() { }
+  constructor(private ocr: OCR) { }
 
   async takePhoto() {
     const { Camera } = Plugins;
@@ -28,26 +27,12 @@ export class ConsumptionCounterPage implements OnInit {
     });
 
     // OCR photo
-    async function performOCR(imageData: string) {
-      const img = await loadImage(imageData);
-      const canvas = createCanvas(img.width, img.height);
-      const context = canvas.getContext('2d');
-    
-    
-      if (context) {
-        context.drawImage(img, 0, 0);
-    
-        const buffer = canvas.toBuffer('image/png');
-        const { data } = await Tesseract.recognize(buffer);
-        const decodedText = data.text.trim();
-    
-        // Use decodedText as needed
-      } else {
-        console.error('Unable to get 2D context for canvas.');
-      }
-    }
-      // Use decodedText as needed
-    
+    this.ocr.recText(OCRSourceType.NORMFILEURL, image)
+      .then((res: OCRResult) => {
+        this.decodedText = JSON.stringify(res);
+        console.log(JSON.stringify(this.decodedText))
+      })
+      .catch((error: any) => console.error(error));
   }
 
 
