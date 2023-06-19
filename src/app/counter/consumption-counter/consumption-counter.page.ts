@@ -20,19 +20,15 @@ export class ConsumptionCounterPage {
     this.loadWorker();
    }
 
-  takePhoto = async() => {  
+  async takePhoto() {  
     const image = await Camera.getPhoto({
       quality: 90,
       allowEditing: true,
       resultType: CameraResultType.DataUrl,
       source: CameraSource.Camera,
-      width: 200, 
-      height: 1 
     });
     console.log(image);
     this.image = image.dataUrl;
-    // OCR photo 
-
   }
 
   async loadWorker() {
