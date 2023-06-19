@@ -19,6 +19,10 @@ const routes: Routes = [
     path: 'pincode',
     loadChildren: () => import('./qrcode/pincode/pincode.module').then( m => m.PincodePageModule)
   },
+  {
+    path: 'consumption-counter',
+    loadChildren: () => import('./counter/consumption-counter/consumption-counter.module').then( m => m.ConsumptionCounterPageModule)
+  },
 ];
 
 @NgModule({
