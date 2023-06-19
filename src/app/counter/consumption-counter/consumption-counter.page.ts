@@ -39,8 +39,8 @@ export class ConsumptionCounterPage {
       }
     })
     await this.worker?.load();
-    await this.worker?.loadLanguage('eng');
-    await this.worker?.initialize('eng');
+    await this.worker?.loadLanguage('fra');
+    await this.worker?.initialize('fra');
     this.workerReady = true;
   }
 
