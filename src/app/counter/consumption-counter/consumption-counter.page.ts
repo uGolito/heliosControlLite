@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CameraResultType, CameraSource, Camera } from '@capacitor/camera';
-import { Plugins } from '@capacitor/core';
-import { OCR, OCRResult, OCRSourceType } from '@awesome-cordova-plugins/ocr/ngx';
+import { create } from 'domain';
+import * as Tesseract from 'tesseract.js';
+import { createWorker } from 'tesseract.js';
 
 
 @Component({
@@ -9,40 +10,55 @@ import { OCR, OCRResult, OCRSourceType } from '@awesome-cordova-plugins/ocr/ngx'
   templateUrl: './consumption-counter.page.html',
   styleUrls: ['./consumption-counter.page.scss'],
 })
-export class ConsumptionCounterPage implements OnInit {
-  decodedText: string = '';
+export class ConsumptionCounterPage {
+  ocrResult: string | undefined;
+  worker: Tesseract.Worker | undefined;
+  workerReady = false;
+  image: any;
 
-  constructor(private ocr: OCR) { }
+  constructor() {
+    this.loadWorker();
+   }
 
-  async takePhoto() {
-    const { Camera } = Plugins;
-  
-    const image = await Camera['getPhoto']({
+  takePhoto = async() => {  
+    const image = await Camera.getPhoto({
       quality: 90,
       allowEditing: true,
-      resultType: CameraResultType.Base64,
+      resultType: CameraResultType.DataUrl,
       source: CameraSource.Camera,
-      width: 300, 
+      width: 200, 
       height: 1 
     });
+    console.log(image);
+    this.image = image.dataUrl;
+    // OCR photo 
 
-    // OCR photo
-    this.ocr.recText(OCRSourceType.NORMFILEURL, image)
-      .then((res: OCRResult) => {
-        this.decodedText = JSON.stringify(res);
-        console.log(JSON.stringify(this.decodedText))
-      })
-      .catch((error: any) => console.error(error));
   }
 
+  async loadWorker() {
+    this.worker = await createWorker({
+      logger: progress => {
+        console.log(progress);
+        console.log("fin");
+      }
+    })
+    await this.worker?.load();
+    await this.worker?.loadLanguage('eng');
+    await this.worker?.initialize('eng');
+    this.workerReady = true;
+  }
 
+  async recognizeImages() {
+    const result = await this.worker?.recognize(this.image);
+    console.log("test");
+    this.ocrResult = result?.data.text;
+  }
 
   enterDigits() {
     // Affichez une boîte de dialogue pour entrer les chiffres manuellement ici
     // Vous pouvez utiliser une bibliothèque comme Ionic AlertController pour cela
   }
 
-  ngOnInit() {
-  }
+  
 
 }

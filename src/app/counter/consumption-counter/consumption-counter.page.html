@@ -9,7 +9,8 @@
 <ion-content [fullscreen]="true">
   <div class="dark-background">
     <ion-button expand="full" (click)="takePhoto()">Prendre une photo</ion-button>
-    <p>Text décodé = {{ decodedText }}</p>
+    <ion-button expand="full" (click)="recognizeImages()">Reconnaître l'image</ion-button>
+    <p style="color:aliceblue;">Text décodé = {{ ocrResult }}</p>
     <ion-button expand="full" (click)="enterDigits()">Entrer une série de chiffre</ion-button>
   </div>
 </ion-content>
