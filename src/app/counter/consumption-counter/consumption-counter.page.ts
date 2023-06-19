@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CameraResultType, CameraSource } from '@capacitor/camera';
+import { CameraResultType, CameraSource, Camera } from '@capacitor/camera';
 import { Plugins } from '@capacitor/core';
-import * as Tesseract from 'tesseract.js';
 
 
 @Component({
