@@ -30,20 +30,15 @@ export class ConsumptionCounterPage {
   }
 
   async loadWorker() {
-    this.worker = await createWorker({
-      logger: progress => {
-        console.log(progress);
-        console.log("fin");
-      }
-    })
-    await this.worker?.load();
+    this.worker = await createWorker();
+    
     await this.worker?.loadLanguage('fra');
     await this.worker?.initialize('fra');
 
     // Ajuster les paramètres de Tesseract.js
-    this.worker.setParameters({
-      tessedit_char_whitelist: ',0123456789', // Liste des caractères autorisés
-    });
+    // this.worker.setParameters({
+    //   tessedit_char_whitelist: ',0123456789', // Liste des caractères autorisés
+    // });
 
     this.workerReady = true;
   }
@@ -51,8 +46,9 @@ export class ConsumptionCounterPage {
   async recognizeImages() {
     const result = await this.worker?.recognize(this.image);
     console.log("test");
-    this.ocrResult = result?.data.text;
-  }  
+    this.ocrResult = result?.data.text.replace(/\D/g, "");
+
+  }   
 
   enterDigits() {
     // Affichez une boîte de dialogue pour entrer les chiffres manuellement ici
