@@ -23,6 +23,10 @@ const routes: Routes = [
     path: 'consumption-counter',
     loadChildren: () => import('./counter/consumption-counter/consumption-counter.module').then( m => m.ConsumptionCounterPageModule)
   },
+  {
+    path: 'input-comsuption',
+    loadChildren: () => import('./counter/input-comsuption/input-comsuption.module').then( m => m.InputComsuptionPageModule)
+  },
 ];
 
 @NgModule({

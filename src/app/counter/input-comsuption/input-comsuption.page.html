@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title class="ion-text-center">
+      Helios Control Lite
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card-content>
+    <div class="number-odometer" *ngFor="let number of numbers; let i=index">
+      <div class="odometer-number">
+        <span (click)="editNumber(i)">{{number}}</span>
+      </div>
+    </div>
+    <div class="number-odometer" *ngFor="let number of decimals; let i=index">
+      <span class="odometer-decimal" (click)="editNumber(numbers.length + i)">{{number}}</span>
+    </div>
+  </ion-card-content>
+  <ion-button expand="full" (click)="getEnteredNumbers()">console log de l index</ion-button>
+</ion-content>
+

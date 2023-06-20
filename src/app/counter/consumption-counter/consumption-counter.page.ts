@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { CameraResultType, CameraSource, Camera } from '@capacitor/camera';
+import { NavController } from '@ionic/angular';
 import * as Tesseract from 'tesseract.js';
-import { createWorker, createScheduler } from 'tesseract.js';
+import { createWorker } from 'tesseract.js';
+
 
 @Component({
   selector: 'app-consumption-counter',
@@ -14,7 +16,7 @@ export class ConsumptionCounterPage {
   workerReady = false;
   image: any;
 
-  constructor() {
+  constructor(public navCtrl: NavController) {
     this.loadWorker();
    }
 
@@ -35,11 +37,6 @@ export class ConsumptionCounterPage {
     await this.worker?.loadLanguage('fra');
     await this.worker?.initialize('fra');
 
-    // Ajuster les paramètres de Tesseract.js
-    // this.worker.setParameters({
-    //   tessedit_char_whitelist: ',0123456789', // Liste des caractères autorisés
-    // });
-
     this.workerReady = true;
   }
 
@@ -51,7 +48,6 @@ export class ConsumptionCounterPage {
   }   
 
   enterDigits() {
-    // Affichez une boîte de dialogue pour entrer les chiffres manuellement ici
-    // Vous pouvez utiliser une bibliothèque comme Ionic AlertController pour cela
+    this.navCtrl.navigateRoot('/input-comsuption');
   }
 }
