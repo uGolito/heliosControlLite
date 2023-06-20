@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { CameraResultType, CameraSource, Camera } from '@capacitor/camera';
-import { create } from 'domain';
 import * as Tesseract from 'tesseract.js';
-import { createWorker } from 'tesseract.js';
+import { createWorker, createScheduler } from 'tesseract.js';
 
 @Component({
   selector: 'app-consumption-counter',
@@ -14,15 +13,12 @@ export class ConsumptionCounterPage {
   worker: Tesseract.Worker | undefined;
   workerReady = false;
   image: any;
-  showCameraOverlay = false;
-  photoTaken = false;
 
   constructor() {
     this.loadWorker();
    }
 
   async takePhoto() {
-    this.showCameraOverlay = true;  
     const image = await Camera.getPhoto({
       quality: 90,
       allowEditing: true,
@@ -30,7 +26,6 @@ export class ConsumptionCounterPage {
       source: CameraSource.Camera,
     });
     console.log(image);
-    this.photoTaken = true;
     this.image = image.dataUrl;
   }
 
@@ -44,6 +39,12 @@ export class ConsumptionCounterPage {
     await this.worker?.load();
     await this.worker?.loadLanguage('fra');
     await this.worker?.initialize('fra');
+
+    // Ajuster les paramètres de Tesseract.js
+    this.worker.setParameters({
+      tessedit_char_whitelist: ',0123456789', // Liste des caractères autorisés
+    });
+
     this.workerReady = true;
   }
 
@@ -51,8 +52,7 @@ export class ConsumptionCounterPage {
     const result = await this.worker?.recognize(this.image);
     console.log("test");
     this.ocrResult = result?.data.text;
-    this.photoTaken = false;
-  }
+  }  
 
   enterDigits() {
     // Affichez une boîte de dialogue pour entrer les chiffres manuellement ici

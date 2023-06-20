@@ -8,9 +8,6 @@
 
 <ion-content class="ion-padding">
   <ion-img [src]="image"></ion-img>
-  <div class="camera-overlay" *ngIf="showCameraOverlay && !photoTaken">
-    <div class="camera-overlay-inner"></div>
-  </div>
   <ion-button expand="full" (click)="takePhoto()">Prendre une photo</ion-button>
   <ion-button expand="full" (click)="recognizeImages()" [disabled]="!workerReady">Reconnaître l'image</ion-button>
   <ion-card-content>
