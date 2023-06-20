@@ -4,7 +4,6 @@ import { create } from 'domain';
 import * as Tesseract from 'tesseract.js';
 import { createWorker } from 'tesseract.js';
 
-
 @Component({
   selector: 'app-consumption-counter',
   templateUrl: './consumption-counter.page.html',
@@ -54,7 +53,4 @@ export class ConsumptionCounterPage {
     // Affichez une boîte de dialogue pour entrer les chiffres manuellement ici
     // Vous pouvez utiliser une bibliothèque comme Ionic AlertController pour cela
   }
-
-  
-
 }
