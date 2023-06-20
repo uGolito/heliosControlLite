@@ -14,12 +14,15 @@ export class ConsumptionCounterPage {
   worker: Tesseract.Worker | undefined;
   workerReady = false;
   image: any;
+  showCameraOverlay = false;
+  photoTaken = false;
 
   constructor() {
     this.loadWorker();
    }
 
-  async takePhoto() {  
+  async takePhoto() {
+    this.showCameraOverlay = true;  
     const image = await Camera.getPhoto({
       quality: 90,
       allowEditing: true,
@@ -27,6 +30,7 @@ export class ConsumptionCounterPage {
       source: CameraSource.Camera,
     });
     console.log(image);
+    this.photoTaken = true;
     this.image = image.dataUrl;
   }
 
@@ -47,6 +51,7 @@ export class ConsumptionCounterPage {
     const result = await this.worker?.recognize(this.image);
     console.log("test");
     this.ocrResult = result?.data.text;
+    this.photoTaken = false;
   }
 
   enterDigits() {
