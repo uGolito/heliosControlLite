@@ -15,7 +15,7 @@ export class ConsumptionCounterPage {
   worker: Tesseract.Worker | undefined;
   workerReady = false;
   image: any;
-  private Jimp = require('jimp');
+
 
   constructor(public navCtrl: NavController) {
     this.loadWorker();

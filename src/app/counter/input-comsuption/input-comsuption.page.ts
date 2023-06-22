@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 export class InputComsuptionPage implements OnInit {
   numValues: string[] = [];
   num2Values: string[] = [];
+  joinedValues: any;
 
   numbers: any[] = [0, 0, 0, 0, 0]; // Tableau pour stocker les nombres
   decimals: number[] = [0, 0, 0]; // Tableau pour stocker les décimales
@@ -25,8 +26,8 @@ export class InputComsuptionPage implements OnInit {
   }
 
   getJoinedValues() {
-    const joinedValues = this.numValues.join('')+','+this.num2Values.join('');
-    console.log(joinedValues);
+    this.joinedValues = this.numValues.join('')+','+this.num2Values.join('');
+    console.log(this.joinedValues);
   }
 
   ngOnInit() {

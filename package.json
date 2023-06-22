@@ -43,7 +43,6 @@
     "jimp": "^0.22.8",
     "ngx-qrscanner": "^0.0.1-security",
     "ngx-socket-io": "^4.4.0",
-    "node-tesseract-ocr": "^2.2.1",
     "rxjs": "~7.5.0",
     "tesseract.js": "^4.1.0",
     "tslib": "^2.3.0",
