@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-input-comsuption',
@@ -6,36 +7,41 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./input-comsuption.page.scss'],
 })
 export class InputComsuptionPage implements OnInit {
-  numbers: number[] = [0, 0, 0, 0, 0]; // Tableau pour stocker les nombres
+  numValues: string[] = [];
+  num2Values: string[] = [];
+
+  numbers: any[] = [0, 0, 0, 0, 0]; // Tableau pour stocker les nombres
   decimals: number[] = [0, 0, 0]; // Tableau pour stocker les décimales
+  index = ['','','','','','',''];
 
-  editNumber(index: number) {
-    const newNumber = prompt('Entrez un nombre :');
-    if (newNumber !== null) {
-      const parsedNumber = parseInt(newNumber, 10);
-      if (!isNaN(parsedNumber)) {
-        // Mettez à jour le tableau de nombres avec le nouveau nombre
-        if (index < this.numbers.length) {
-          this.numbers[index] = parsedNumber;
-        } else {
-          const decimalIndex = index - this.numbers.length;
-          if (decimalIndex < this.decimals.length) {
-            this.decimals[decimalIndex] = parsedNumber;
-          }
-        }
-      }
-    }
+  constructor(private route: Router) { }
+
+  addNumValue(value: string) {
+    this.numValues.push(value);
   }
 
-  getEnteredNumbers(){
-    // Concaténez les nombres et les décimales en une seule chaîne
-    const enteredNumbers = this.numbers.join('') + ',' + this.decimals.join('');
-    console.log(enteredNumbers);
+  addNum2Value(value: string) {
+    this.num2Values.push(value);
   }
 
-  constructor() { }
+  getJoinedValues() {
+    const joinedValues = this.numValues.join('')+','+this.num2Values.join('');
+    console.log(joinedValues);
+  }
 
   ngOnInit() {
+  }
+
+  navigation(url : String) {
+    this.route.navigate(['/'+url]);
+  }
+
+  maFonction(code: any) {
+    document.getElementById('code'+code)?.focus();    
+  }
+
+  maFonction2(code: any) {
+    this.index[code] = '';
   }
 
 }

@@ -15,6 +15,7 @@ export class ConsumptionCounterPage {
   worker: Tesseract.Worker | undefined;
   workerReady = false;
   image: any;
+  private Jimp = require('jimp');
 
   constructor(public navCtrl: NavController) {
     this.loadWorker();
@@ -44,7 +45,7 @@ export class ConsumptionCounterPage {
     const result = await this.worker?.recognize(this.image);
     console.log("test");
     this.ocrResult = result?.data.text.replace(/\D/g, "");
-
+    console.log(this.ocrResult?.split(''))
   }   
 
   enterDigits() {

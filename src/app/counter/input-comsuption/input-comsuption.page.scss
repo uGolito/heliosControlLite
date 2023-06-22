@@ -1,35 +1,62 @@
 ion-content {
   --background: #333;
+  --overflow:hidden;
 }
 
-.odometer-number {
-  display: block;
-  background: url('../../../assets/images/single-counter.png');
+ion-input {
+  --background: #555;
+  border-radius: 10px;
+  --border-color: #ccc;
+  color: #fff;
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+}
+
+.container-form {
+  display: flex;
+  justify-content: center;
+}
+
+.num {
+  background-color: transparent;
+  width: 25%;
+  text-align: center;
+  outline: none;
+  //padding: 1rem 1rem;
+  font-size: 2rem;
+  border: 1px solid rgba(255, 255, 255, .3);
+  border-radius: .5rem;
   color: white;
-  font-size: xx-large;
-  width: 35px;
-  float: left;
+  font-family: futura;
+  background: url('../../../assets/images/single-counter.png') no-repeat;
+  background-size: contain;
+  background-position: center;
+  width: 50px;
+  height: 66px;
+  padding-left: 4px;
 }
 
-.odometer-number span {
-margin-left : 8px;
+.num2 {
+  color: black;
+  background: url('../../../assets/images/single-counter-dec.png') no-repeat;
+  background-size: contain;
+  background-position: center;
 }
 
-.odometer-decimal span {
-margin-left : 8px;
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
-.odometer-decimal {
-display: block;
-background: url('../../../assets/images/single-counter-dec.png');
-color: black;
-font-size: xx-large;
-width: 35px;
-float: left;
-padding-left: 8px;
-}
-
-.unit-odometer h3 {
-color : white !important;
-font-weight: bold;
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }
