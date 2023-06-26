@@ -55,3 +55,40 @@ ion-content {
     font-size: 1.5rem;
   }
 }
+
+.photo-container {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 133.33%; /* Ratio 3:4 (rectangle) */
+  overflow: hidden;
+}
+
+.photo-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.photo-frame {
+  width: 75%;
+  height: 30%;
+  border: 2px solid white;
+  border-radius: 6px;
+}
+
+ion-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 2;
+}
