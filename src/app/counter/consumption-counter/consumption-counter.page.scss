@@ -56,43 +56,57 @@ ion-content {
   }
 }
 
-// .photo-container {
-//   position: relative;
-//   width: 100%;
-//   height: 0;
-//   padding-bottom: 133.33%; /* Ratio 3:4 (rectangle) */
-//   overflow: hidden;
-// }
+.photo-container {
+  position: relative;
+}
 
 .photo-overlay {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  height: 15%;
   background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  z-index: 999;
 }
 
 .photo-overlay.active {
-  opacity: 1;
+  display: block;
 }
 
-.photo-frame {
-  width: 75%;
-  height: 15%;
-  border: 2px solid white;
-  border-radius: 6px;
-}
-
-ion-img {
+.photo-frame-overlay {
   position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 115%;
+  height: 40px;
+  border: 2px solid #000;
+  box-sizing: border-box;
+}
+
+.photo-frame-overlay::before,
+.photo-frame-overlay::after {
+  content: "";
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.photo-frame-overlay::before {
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 2;
+  right: 0;
+  height: calc(50% - 100px);
+}
+
+.photo-frame-overlay::after {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: calc(50% - 100px);
+}
+
+.photo-frame-overlay ion-img {
+  display: none;
 }
