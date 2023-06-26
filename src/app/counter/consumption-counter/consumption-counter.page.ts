@@ -16,7 +16,7 @@ export class ConsumptionCounterPage {
   worker: Tesseract.Worker | undefined;
   workerReady = false;
   image: any;
-
+  showOverlay = false;
 
   constructor(public navCtrl: NavController, private route: Router) {
     this.loadWorker();
@@ -30,6 +30,7 @@ export class ConsumptionCounterPage {
       source: CameraSource.Camera,
     });
     console.log(image);
+    this.showOverlay = true;
     this.image = image.dataUrl;
   }
 
@@ -118,7 +119,7 @@ export class ConsumptionCounterPage {
   }
 
   maFonction(code: any) {
-    document.getElementById('code'+code)?.focus();    
+    document.getElementById('code'+code);    
   }
 
   maFonction2(code: any) {

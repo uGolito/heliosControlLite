@@ -8,7 +8,7 @@
 
 <ion-content class="ion-padding">
   <div class="photo-container">
-    <div class="photo-overlay">
+    <div class="photo-overlay" [ngClass]="{'active': showOverlay}">
       <div class="photo-frame"></div>
     </div>
     <ion-img [src]="image" *ngIf="image"></ion-img>
