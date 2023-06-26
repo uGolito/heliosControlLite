@@ -1,34 +1,29 @@
 ion-content {
   --background: #333;
-  --overflow:hidden;
-}
-
-ion-input {
-  --background: #555;
-  border-radius: 10px;
-  --border-color: #ccc;
-  color: #fff;
-  width: 100%;
+  --overflow: hidden;
 }
 
 .container {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  align-items: center;
   height: 100%;
 }
 
 .container-form {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
+  width: 100%;
+  max-width: 400px; /* Définissez une largeur maximale pour éviter le débordement sur les petits écrans */
 }
 
 .num {
   background-color: transparent;
-  width: 25%;
+  width: 50px;
   text-align: center;
   outline: none;
-  //padding: 1rem 1rem;
   font-size: 2rem;
   border: 1px solid rgba(255, 255, 255, .3);
   border-radius: .5rem;
@@ -37,7 +32,6 @@ ion-input {
   background: url('../../../assets/images/single-counter.png') no-repeat;
   background-size: contain;
   background-position: center;
-  width: 50px;
   height: 66px;
   padding-left: 4px;
 }
@@ -49,14 +43,15 @@ ion-input {
   background-position: center;
 }
 
-/* Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-/* Firefox */
-input[type=number] {
-  -moz-appearance: textfield;
+/* Appliquez des styles spécifiques aux petits écrans */
+@media screen and (max-width: 480px) {
+  .container-form {
+    max-width: 275px;
+  }
+  
+  .num {
+    width: 40px;
+    height: 50px;
+    font-size: 1.5rem;
+  }
 }
