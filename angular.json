@@ -38,7 +38,12 @@
               "./node_modules/@fortawesome/fontawesome-free/css/all.min.css"
             ],
             "scripts": [
-              "node_modules/@fortawesome/fontawesome-free/js/all.min.js"
+              "node_modules/@fortawesome/fontawesome-free/js/all.min.js",
+              "./node_modules/path/path.js",
+              "node_modules/path-browserify/index.js",
+              "node_modules/crypto-browserify/index.js",
+              "node_modules/stream-browserify/index.js",
+              "node_modules/path-browserify/index.js"
             ]
           },
           "configurations": {

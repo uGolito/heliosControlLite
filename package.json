@@ -11,6 +11,9 @@
     "test": "ng test",
     "lint": "ng lint"
   },
+  "browser": {
+    "fs": false
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "^15.0.0",
@@ -36,14 +39,19 @@
     "@capacitor/status-bar": "4.1.1",
     "@fortawesome/fontawesome-free": "^6.3.0",
     "@ionic/angular": "^6.1.9",
+    "@techstark/opencv-js": "^4.7.0-release.1",
     "@types/offscreencanvas": "^2019.7.0",
     "canvas": "^2.11.2",
     "cordova-plugin-mobile-ocr": "^3.1.2",
+    "crypto-browserify": "^3.12.0",
     "ionicons": "^6.0.3",
     "jimp": "^0.22.8",
     "ngx-qrscanner": "^0.0.1-security",
     "ngx-socket-io": "^4.4.0",
+    "path": "^0.12.7",
+    "path-browserify": "^1.0.1",
     "rxjs": "~7.5.0",
+    "stream-browserify": "^3.0.0",
     "tesseract.js": "^4.1.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
