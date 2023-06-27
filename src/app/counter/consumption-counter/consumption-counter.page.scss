@@ -1,0 +1,70 @@
+ion-content {
+  --background: #333;
+  --overflow: hidden;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+}
+
+.container-form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  max-width: 400px; /* Définissez une largeur maximale pour éviter le débordement sur les petits écrans */
+}
+
+.num {
+  background-color: transparent;
+  width: 50px;
+  text-align: center;
+  outline: none;
+  font-size: 2rem;
+  border: 1px solid rgba(255, 255, 255, .3);
+  border-radius: .5rem;
+  color: white;
+  font-family: futura;
+  background: url('../../../assets/images/single-counter.png') no-repeat;
+  background-size: contain;
+  background-position: center;
+  height: 66px;
+  padding-left: 4px;
+}
+
+.num2 {
+  color: black;
+  background: url('../../../assets/images/single-counter-dec.png') no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+/* Appliquez des styles spécifiques aux petits écrans */
+@media screen and (max-width: 480px) {
+  .container-form {
+    max-width: 275px;
+  }
+  
+  .num {
+    width: 40px;
+    height: 50px;
+    font-size: 1.5rem;
+  }
+}
+
+.scan-box {
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 100vmax rgb(0, 0, 0, 0.5);
+  content: "";
+  display: block;
+  left: 50%;
+  height: 300px;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+}
